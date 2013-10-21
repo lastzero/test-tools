@@ -3,5 +3,6 @@ Test Tools for PHP
 
 This library provides
 
-* automatic database query fixtures (see http://martinfowler.com/bliki/SelfInitializingFake.html)
-* dependency injection support for easier testing of complex components (built on top of Symfony & PHPUnit)
+* a basic file fixture class to read and write data from/to the file system (no external dependencies)
+* automatic database fixtures for Doctrine DBAL (see http://martinfowler.com/bliki/SelfInitializingFake.html)
+* test dependency injection support built on top of the Symfony2 dependency injection container and PHPUnit
