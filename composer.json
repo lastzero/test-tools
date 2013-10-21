@@ -2,13 +2,15 @@
     "name": "lastzero/test-tools",
     "type": "library",
     "description": "PHP Test Tools",
-    "keywords": ["framework"],
+    "keywords": ["phpunit","testing","database","dbal","mock","fixture"],
     "homepage": "https://github.com/lastzero/test-tools",
     "license": "MIT",
     "authors": [
         {
             "name": "Michael Mayer",
-            "email": "michael@liquidbytes.net"
+            "email": "michael@liquidbytes.net",
+            "homepage": "http://www.liquidbytes.net/",
+            "role": "Developer"
         }
     ],
     "require": {
