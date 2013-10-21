@@ -1,0 +1,21 @@
+parameters:
+    database.params:
+        driver:         mysqli
+        host:           localhost
+        port:           3306
+        dbname:         testtools
+        charset:        utf8
+        user:           testtools
+        password:       testtools
+
+services:
+    database_driver:
+        class: Doctrine\DBAL\Driver\Mysqli\Driver
+
+    database_connection:
+        class: TestTools\Doctrine\FixtureConnection
+        arguments:
+            - %database.params%
+            - @database_driver
+        calls:
+            - [useFixtures, ["%fixture.path%"]]

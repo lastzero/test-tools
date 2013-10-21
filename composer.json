@@ -1,0 +1,28 @@
+{
+    "name": "test-tools",
+    "type": "library",
+    "description": "PHP test tools for Symfony / Silex",
+    "keywords": ["framework"],
+    "homepage": "https://github.com/lastzero/test-tools",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Mayer",
+            "email": "michael@liquidbytes.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "symfony/dependency-injection": ">=2.3",
+        "symfony/yaml": ">=2.3",
+        "symfony/console": ">=2.3",
+        "symfony/config": ">=2.3",
+        "symfony/framework-bundle": ">=2.3",
+        "doctrine/dbal": ">=2.3"
+    },
+    "autoload": {
+        "psr-0": { "TestTools\\": "src/" }
+    }
+}
