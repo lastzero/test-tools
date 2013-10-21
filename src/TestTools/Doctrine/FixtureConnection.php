@@ -92,9 +92,9 @@ class FixtureConnection extends Connection
         return call_user_func_array(array('parent', 'query'), func_get_args());
     }
 
-    public function fetchAll($sql, array $params = array())
+    public function fetchAll($sql, array $params = array(), $types = array())
     {
-        return $this->callWithFixtures('fetchAll', array($sql, $params));
+        return $this->callWithFixtures('fetchAll', array($sql, $params, $types));
     }
 
     public function fetchAssoc($statement, array $params = array())
