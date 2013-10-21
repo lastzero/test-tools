@@ -1,5 +1,5 @@
 {
-    "name": "test-tools",
+    "name": "lastzero/test-tools",
     "type": "library",
     "description": "PHP test tools for Symfony / Silex",
     "keywords": ["framework"],
