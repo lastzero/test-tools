@@ -1,7 +1,7 @@
 {
     "name": "lastzero/test-tools",
     "type": "library",
-    "description": "PHP test tools for Symfony / Silex",
+    "description": "PHP Test Tools",
     "keywords": ["framework"],
     "homepage": "https://github.com/lastzero/test-tools",
     "license": "MIT",
