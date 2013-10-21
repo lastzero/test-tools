@@ -92,6 +92,11 @@ class FixtureConnection extends Connection
         return call_user_func_array(array('parent', 'query'), func_get_args());
     }
 
+    public function fetchAll($sql, array $params = array())
+    {
+        return $this->callWithFixtures('fetchAll', array($sql, $params));
+    }
+
     public function fetchAssoc($statement, array $params = array())
     {
         return $this->callWithFixtures('fetchAssoc', array($statement, $params));
@@ -107,9 +112,9 @@ class FixtureConnection extends Connection
         return $this->callWithFixtures('fetchColumn', array($statement, $params, $colnum));
     }
 
-    public function delete($tableName, array $identifier)
+    public function delete($tableName, array $identifier, array $types = array())
     {
-        return $this->callWithFixtures('delete', array($tableName, $identifier));
+        return $this->callWithFixtures('delete', array($tableName, $identifier, $types));
     }
 
     public function update($tableName, array $data, array $identifier, array $types = array())
@@ -135,11 +140,6 @@ class FixtureConnection extends Connection
     public function quote($input, $type = null)
     {
         return $this->callWithFixtures('quote', array($input, $type));
-    }
-
-    public function fetchAll($sql, array $params = array())
-    {
-        return $this->callWithFixtures('fetchAll', array($sql, $params));
     }
 
     public function project($query, array $params, Closure $function)
