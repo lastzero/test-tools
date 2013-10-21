@@ -23,6 +23,6 @@
         "doctrine/dbal": ">=2.3"
     },
     "autoload": {
-        "psr-0": { "TestTools\\": "src/" }
+        "psr-0": { "TestTools": "src/" }
     }
 }
