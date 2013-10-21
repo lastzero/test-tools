@@ -40,3 +40,9 @@ Have a look at the doctrine fixture connection class (TestTools\Doctrine\Fixture
 The basic concept is described by Martin Fowler:
     
 http://martinfowler.com/bliki/SelfInitializingFake.html
+
+Composer can be used to add this library to your project:
+
+    "require": {
+        "lastzero/test-tools": ">=0.3"
+    },
