@@ -12,6 +12,9 @@ use TestTools\TestCase\UnitTestCase;
  */
 class FixtureConnectionTest extends UnitTestCase
 {
+    /**
+     * @var \TestTools\Doctrine\FixtureConnection
+     */
     protected $db;
 
     public function setUp()
@@ -70,6 +73,22 @@ class FixtureConnectionTest extends UnitTestCase
         $row = array('name' => 'Baz', 'email' => 'baz@example.com');
 
         $result = $this->db->insert('users', $row);
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * @depends testInsert
+     */
+    public function testLastInsertId()
+    {
+        $expected = 4;
+
+        $row = array('name' => 'New', 'email' => 'new@example.com');
+
+        $this->db->insert('users', $row);
+
+        $result = $this->db->lastInsertId();
 
         $this->assertEquals($expected, $result);
     }

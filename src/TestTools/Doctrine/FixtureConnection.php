@@ -3,8 +3,7 @@
 namespace TestTools\Doctrine;
 
 use Doctrine\DBAL\Connection;
-use TestTools\Fixture\FileFixture;
-use TestTools\Fixture\Exception\FixtureNotFoundException;
+use TestTools\Fixture\SelfInitializingFixtureTrait;
 
 /**
  * @author Michael Mayer <michael@liquidbytes.net>
@@ -13,79 +12,24 @@ use TestTools\Fixture\Exception\FixtureNotFoundException;
  */
 class FixtureConnection extends Connection
 {
-    private $_fixturePath = false;
-    private $_disableQuery = false;
+    use SelfInitializingFixtureTrait;
 
     public function connect()
     {
-        if ($this->_fixturePath) {
+        if ($this->usesFixtures()) {
             echo ' [SQL CONNECT BY "' . $this->getCaller() . '"] ';
         }
 
         return parent::connect();
     }
 
-    public function getCaller()
-    {
-        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 4);
-        $caller = $trace[3];
-        return @$caller['class'] . '->' . @$caller['function'] . '()';
-    }
-
-    public function useFixtures($fixturePath)
-    {
-        $this->_fixturePath = FileFixture::normalizePath($fixturePath);
-    }
-
-    public function disableFixtures()
-    {
-        $this->_fixturePath = false;
-    }
-
-    public function usesFixtures()
-    {
-        return ($this->_fixturePath != false);
-    }
-
-    public function disableDirectQueries()
-    {
-        $this->_disableQuery = true;
-    }
-
-    public function enableDirectQueries()
-    {
-        $this->_disableQuery = false;
-    }
-
-    protected function callWithFixtures($functionName, $params)
-    {
-        if ($this->_fixturePath) {
-            $fixture = new FileFixture($this->_fixturePath . FileFixture::getFilename('sql_' . $functionName, $params));
-
-            try {
-                $result = $fixture->getData();
-                return $result;
-            } catch (FixtureNotFoundException $e) {
-                // No fixture found, the query has to be executed
-            }
-        }
-
-        $result = call_user_func_array(array('parent', $functionName), $params);
-
-        if ($this->_fixturePath) {
-            $fixture->setData($result);
-        }
-
-        return $result;
-    }
-
     public function query()
     {
-        if ($this->_disableQuery) {
+        if ($this->offlineModeEnabled()) {
             return;
         }
 
-        if ($this->_fixturePath) {
+        if ($this->usesFixtures()) {
             echo 'WARNING: query() does not work with fixtures - please use other SQL methods';
         }
 
@@ -145,5 +89,10 @@ class FixtureConnection extends Connection
     public function project($query, array $params, Closure $function)
     {
         return $this->callWithFixtures('project', array($query, $params, $function));
+    }
+
+    public function lastInsertId($seqName = null)
+    {
+        return $this->callWithFixtures('lastInsertId', array($seqName));
     }
 }
