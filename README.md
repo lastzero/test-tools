@@ -29,26 +29,6 @@ TestTools\TestCase\UnitTestCase.php contains an integrated DI container for more
         }
     }
 
-TestTools\TestCase\WebTestCase.php can be used for functional testing of controllers:
-
-    use TestTools\TestCase\WebTestCase;
-
-    class FooControllerTest extends WebTestCase
-    {
-        protected function configureFixtures(ContainerInterface $container) {
-            $fixturePath = $this->getFixturePath();
-
-            $container->get('foo')->useFixtures($fixturePath);
-        }
-
-        public function testGetBar()
-        {
-            $this->client->request('GET', '/bar/Pi', array(2));
-            $response = $this->client->getResponse();
-            $this->assertEquals(200, $response->getStatusCode());
-        }
-    }
-
 Simply create a config.yml (optionally config.local.yml for local modifications) in your base test directory,
 for example
 
@@ -84,7 +64,28 @@ types of external data stores (databases) and services (SOAP/REST):
 
 http://martinfowler.com/bliki/SelfInitializingFake.html
 
-Composer can be used to add this library to your project:
+TestTools\TestCase\WebTestCase.php can be used for functional testing of Symfony controllers based on the 
+regular DI configuration of your application:
+
+    use TestTools\TestCase\WebTestCase;
+    use Symfony\Component\DependencyInjection\ContainerInterface;
+
+    class FooControllerTest extends WebTestCase
+    {
+        protected function configureFixtures(ContainerInterface $container) {
+            // Service instance must provide a useFixtures() method for this to work
+            $container->get('db')->useFixtures($this->getFixturePath());
+        }
+
+        public function testGetBar()
+        {
+            $this->client->request('GET', '/foo/bar/Pi', array('precision' => 2));
+            $response = $this->client->getResponse();
+            $this->assertEquals(3.14, $response->getContent());
+        }
+    }
+
+If you are using Composer, you just have to add "lastzero/test-tools" to your composer.json file:
 
     "require": {
         "lastzero/test-tools": ">=0.3"
