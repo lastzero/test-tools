@@ -6,8 +6,8 @@ Test Tools for PHP
 The test tools library provides the following components:
 
 * A basic file fixture class to read and write data from/to the file system (no external dependencies)
-* Automatic database fixtures for Doctrine DBAL
-* Test dependency injection support built on top of the Symfony2 dependency injection container and PHPUnit
+* Self initializing database fixtures for Doctrine DBAL (record and playback)
+* Test dependency injection support built on top of the Symfony DI container and PHPUnit
 
 TestTools\TestCase\UnitTestCase.php contains an integrated DI container for more productive testing.
 Simply create a config.yml (optionally config.local.yml for local modifications) in your base test directory,
@@ -36,7 +36,7 @@ because of invalid URLs or credentials in config.yml, you must make sure that al
 accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
  
 You can use TestTools\Fixture\FileFixture.php to easily make any existing classes work with file based fixtures.
-Have a look at the doctrine fixture connection class (TestTools\Doctrine\FixtureConnection.php) to see an example.
+Have a look at the Doctrine fixture connection class (TestTools\Doctrine\FixtureConnection.php) to see an example.
 The basic concept is described by Martin Fowler:
     
 http://martinfowler.com/bliki/SelfInitializingFake.html
@@ -45,4 +45,4 @@ Composer can be used to add this library to your project:
 
     "require": {
         "lastzero/test-tools": ">=0.3"
-    },
+    }
