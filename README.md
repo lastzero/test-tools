@@ -9,7 +9,46 @@ The test tools library provides the following components:
 * Self initializing database fixtures for Doctrine DBAL (record and playback)
 * Test dependency injection support built on top of the Symfony DI container and PHPUnit
 
-TestTools\TestCase\UnitTestCase.php contains an integrated DI container for more productive testing.
+TestTools\TestCase\UnitTestCase.php contains an integrated DI container for more productive testing:
+
+    use TestTools\TestCase\UnitTestCase;
+
+    class FooTest extends UnitTestCase
+    {
+        protected $foo;
+
+        public function setUp()
+        {
+            $this->foo = $this->get('foo');
+        }
+
+        public function testBar()
+        {
+            $result = $this->foo->bar('Pi', 2);
+            $this->assertEquals(3.14, $result);
+        }
+    }
+
+TestTools\TestCase\WebTestCase.php can be used for functional testing of controllers:
+
+    use TestTools\TestCase\WebTestCase;
+
+    class FooControllerTest extends WebTestCase
+    {
+        protected function configureFixtures(ContainerInterface $container) {
+            $fixturePath = $this->getFixturePath();
+
+            $container->get('foo')->useFixtures($fixturePath);
+        }
+
+        public function testGetBar()
+        {
+            $this->client->request('GET', '/bar/Pi', array(2));
+            $response = $this->client->getResponse();
+            $this->assertEquals(200, $response->getStatusCode());
+        }
+    }
+
 Simply create a config.yml (optionally config.local.yml for local modifications) in your base test directory,
 for example
 
@@ -38,8 +77,11 @@ accesses external resources is using fixtures (or mock objects) and that all fix
  
 You can use TestTools\Fixture\FileFixture.php to easily make any existing classes work with file based fixtures.
 Have a look at the Doctrine fixture connection class (TestTools\Doctrine\FixtureConnection.php) to see an example.
-The basic concept is described by Martin Fowler:
-    
+It works as a wrapper (see wrapperClass option) for the standard connection class.
+
+The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
+types of external data stores (databases) and services (SOAP/REST):
+
 http://martinfowler.com/bliki/SelfInitializingFake.html
 
 Composer can be used to add this library to your project:
