@@ -28,9 +28,10 @@ improves test performance compared to a full container reinitialization before e
 to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme.
 The directory is created automatically.
 
-When using a dependency injection container for tests, you should not need to care about different environments:
-Configuration details such as server URLs or login credentials must be valid for development 
-environments only, since service / database requests should be replaced by fixtures after the 
+When using a dependency injection container in conjunction with fixtures, you don't need to care about 
+different environments such as development and production:
+Configuration details (e.g. login credentials) must be valid for development 
+environments only, since service / database requests should be replaced by fixtures from the file system after the 
 corresponding tests were running for the first time. If a test fails on Jenkins or Travis CI
 because of invalid URLs or credentials in config.yml, you must make sure that all code that 
 accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
