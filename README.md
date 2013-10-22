@@ -35,7 +35,7 @@ for example
     Bundle/Example/Tests/config.yml
     
 The yaml file must contain the sections "parameters" and "services". If you're not yet familiar with
-dependency injection or the config file format, you can find more information in this documentation:
+dependency injection or the config file format, you can find more information on symfony.com:
 
 http://symfony.com/doc/current/components/dependency_injection/introduction.html
 
