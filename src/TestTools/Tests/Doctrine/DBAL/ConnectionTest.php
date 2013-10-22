@@ -1,8 +1,7 @@
 <?php
 
-namespace TestTools\Tests\Doctrine;
+namespace TestTools\Tests\Doctrine\DBAL;
 
-use TestTools\Fixture\FileFixture;
 use TestTools\Fixture\Exception\OfflineException;
 use TestTools\TestCase\UnitTestCase;
 
@@ -20,7 +19,7 @@ class ConnectionTest extends UnitTestCase
 
     public function setUp()
     {
-        $this->db = $this->get('database_connection');
+        $this->db = $this->get('dbal.connection');
     }
 
     public function testUsesFixtures()
