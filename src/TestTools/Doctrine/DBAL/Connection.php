@@ -1,8 +1,8 @@
 <?php
 
-namespace TestTools\Doctrine;
+namespace TestTools\Doctrine\DBAL;
 
-use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Connection as DoctrineDBALConnection;
 use TestTools\Fixture\SelfInitializingFixtureTrait;
 
 /**
@@ -10,7 +10,7 @@ use TestTools\Fixture\SelfInitializingFixtureTrait;
  * @package TestTools
  * @license MIT
  */
-class FixtureConnection extends Connection
+class Connection extends DoctrineDBALConnection
 {
     use SelfInitializingFixtureTrait;
 

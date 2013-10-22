@@ -13,7 +13,7 @@ services:
         class: Doctrine\DBAL\Driver\Mysqli\Driver
 
     database_connection:
-        class: TestTools\Doctrine\FixtureConnection
+        class: TestTools\Doctrine\DBAL\Connection
         arguments:
             - %database.params%
             - @database_driver

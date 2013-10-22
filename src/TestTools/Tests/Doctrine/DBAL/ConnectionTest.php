@@ -11,10 +11,10 @@ use TestTools\TestCase\UnitTestCase;
  * @package TestTools
  * @license MIT
  */
-class FixtureConnectionTest extends UnitTestCase
+class ConnectionTest extends UnitTestCase
 {
     /**
-     * @var \TestTools\Doctrine\FixtureConnection
+     * @var \TestTools\Doctrine\DBAL\Connection
      */
     protected $db;
 

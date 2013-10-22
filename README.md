@@ -56,7 +56,7 @@ because of invalid URLs or credentials in config.yml, you must make sure that al
 accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
  
 You can use TestTools\Fixture\FileFixture.php to easily make any existing classes work with file based fixtures.
-Have a look at the Doctrine fixture connection class (TestTools\Doctrine\FixtureConnection.php) to see an example.
+Have a look at the Doctrine fixture connection class (TestTools\Doctrine\DBAL\Connection.php) to see an example.
 It works as a wrapper (see wrapperClass option) for the standard connection class.
 
 The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
@@ -89,5 +89,5 @@ regular DI configuration of your application:
 If you are using Composer, you just have to add "lastzero/test-tools" to your composer.json file:
 
     "require": {
-        "lastzero/test-tools": ">=0.3"
+        "lastzero/test-tools": ">=0.4"
     }
