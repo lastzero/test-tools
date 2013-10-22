@@ -72,7 +72,8 @@ regular DI configuration of your application:
 
     class FooControllerTest extends WebTestCase
     {
-        protected function configureFixtures(ContainerInterface $container) {
+        protected function configureFixtures(ContainerInterface $container)
+        {
             // Service instance must provide a useFixtures() method for this to work
             $container->get('db')->useFixtures($this->getFixturePath());
         }
