@@ -102,7 +102,7 @@ class FixtureConnectionTest extends UnitTestCase
     {
         $row = array('name' => 'Baz', 'foo' => 'bar', 'email' => 'baz@example.com');
 
-        $result = $this->db->insert('users', $row);
+        $this->db->insert('users', $row);
     }
 
     /**
