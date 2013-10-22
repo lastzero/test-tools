@@ -55,9 +55,23 @@ corresponding tests were running for the first time. If a test fails on Jenkins 
 because of invalid URLs or credentials in config.yml, you must make sure that all code that 
 accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
  
-You can use TestTools\Fixture\FileFixture.php to easily make any existing classes work with file based fixtures.
-Have a look at the Doctrine fixture connection class (TestTools\Doctrine\DBAL\Connection.php) to see an example.
-It works as a wrapper (see wrapperClass option) for the standard connection class.
+You can use TestTools\Fixture\SelfInitializingFixtureTrait.php to easily make any existing class
+work with file based fixtures:
+
+    use TestTools\Fixture\SelfInitializingFixtureTrait;
+
+    class Foo extends SomeBaseClass
+    {
+        use SelfInitializingFixtureTrait;
+
+        public function bar($name, $type, array $baz = array())
+        {
+            return $this->callWithFixtures('bar', array($name, $type, $baz));
+        }
+    }
+
+Have a look at the Doctrine fixture connection class (TestTools\Doctrine\DBAL\Connection.php) to see an
+example. It works as a wrapper (see wrapperClass option) for the standard connection class.
 
 The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
 types of external data stores (databases) and services (SOAP/REST):
