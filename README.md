@@ -80,7 +80,7 @@ regular DI configuration of your application:
 
         public function testGetBar()
         {
-            $this->client->request('GET', '/foo/bar/Pi', array('precision' => 2));
+            $this->client->getRequest('/foo/bar/Pi', array('precision' => 2));
             $response = $this->client->getResponse();
             $this->assertEquals(3.14, $response->getContent());
         }
