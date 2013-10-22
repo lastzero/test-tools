@@ -2,7 +2,7 @@
     "name": "lastzero/test-tools",
     "type": "library",
     "description": "PHP Test Tools",
-    "keywords": ["phpunit","testing","database","dbal","mock","fixture"],
+    "keywords": ["phpunit","testing","database","db","dbal","mock","fixture"],
     "homepage": "https://github.com/lastzero/test-tools",
     "license": "MIT",
     "authors": [

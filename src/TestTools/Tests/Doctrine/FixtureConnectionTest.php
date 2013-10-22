@@ -3,6 +3,7 @@
 namespace TestTools\Tests\Doctrine;
 
 use TestTools\Fixture\FileFixture;
+use TestTools\Fixture\Exception\OfflineException;
 use TestTools\TestCase\UnitTestCase;
 
 /**
@@ -25,6 +26,23 @@ class FixtureConnectionTest extends UnitTestCase
     public function testUsesFixtures()
     {
         $this->assertTrue($this->db->usesFixtures());
+    }
+
+    public function testOfflineMode()
+    {
+        $this->assertFalse($this->db->offlineModeEnabled());
+        $this->db->enableOfflineMode();
+        $this->assertTrue($this->db->offlineModeEnabled());
+
+        try {
+            $this->db->fetchAll('SELECT * FROM example');
+            $this->fail('OfflineException was not thrown');
+        } catch(OfflineException $e) {
+            // OK
+        }
+
+        $this->db->disableOfflineMode();
+        $this->assertFalse($this->db->offlineModeEnabled());
     }
 
     public function testFetchAll()
@@ -75,6 +93,16 @@ class FixtureConnectionTest extends UnitTestCase
         $result = $this->db->insert('users', $row);
 
         $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * @expectedException \Doctrine\DBAL\DBALException
+     */
+    public function testInsertException()
+    {
+        $row = array('name' => 'Baz', 'foo' => 'bar', 'email' => 'baz@example.com');
+
+        $result = $this->db->insert('users', $row);
     }
 
     /**
