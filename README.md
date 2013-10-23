@@ -6,7 +6,7 @@ Test Tools for PHP
 The test tools library provides the following components:
 
 * A basic **FileFixture** class to read and write serialized data from/to the file system
-* **SelfInitializingFixtureTrait** to add fixture support to almost any database or service client (record and playback)
+* **SelfInitializingFixtureTrait** and **BlackBox** to add fixture support to almost any database or service client (record and playback)
 * Ready-to-use self-initializing fixture classes for **Doctrine DBAL** (SQL) and **Buzz** (HTTP)
 * **UnitTestCase** with integrated dependency injection container based on Symfony Components and PHPUnit
 * **WebTestCase** and **CommandTestCase** for functional testing of Symfony applications
@@ -73,7 +73,8 @@ work with file based fixtures:
     }
 
 Have a look at the Doctrine fixture connection class (TestTools\Doctrine\DBAL\Connection.php) to see an
-example. It works as a wrapper (see wrapperClass option) for the standard connection class.
+example. It works as a wrapper for the standard connection class (white box inheritance). The Buzz client
+uses the BlackBox class to encapsulate any ClientInterface (black box inheritance)
 
 The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
 types of external data stores (databases) and services (SOAP/REST):
