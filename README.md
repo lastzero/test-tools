@@ -7,7 +7,7 @@ The test tools library provides the following components:
 
 * A basic **FileFixture** class to read and write serialized data from/to the file system
 * **SelfInitializingFixtureTrait** to add fixture support to almost any database or service client (record and playback)
-* Ready-to-use self initializing fixture class for **Doctrine DBAL** (version >= 2.3)
+* Ready-to-use self initializing fixture classes for **Doctrine DBAL** (version >= 2.3) and **Buzz** (HTTP client)
 * **UnitTestCase** with integrated dependency injection container based on Symfony Components and PHPUnit
 * **WebTestCase** and **CommandTestCase** for functional testing of Symfony applications
 
@@ -105,5 +105,5 @@ regular DI configuration of your application:
 If you are using Composer, you just have to add "lastzero/test-tools" to your composer.json file:
 
     "require": {
-        "lastzero/test-tools": ">=0.4"
+        "lastzero/test-tools": ">=0.5"
     }
