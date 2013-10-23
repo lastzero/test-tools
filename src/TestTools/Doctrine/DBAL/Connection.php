@@ -2,6 +2,7 @@
 
 namespace TestTools\Doctrine\DBAL;
 
+use Closure;
 use Doctrine\DBAL\Connection as DoctrineDBALConnection;
 use TestTools\Fixture\SelfInitializingFixtureTrait;
 
