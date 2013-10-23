@@ -22,7 +22,8 @@
     "require-dev": {
         "symfony/console": "~2.3",
         "symfony/framework-bundle": "~2.3",
-        "doctrine/dbal": "~2.3"
+        "doctrine/dbal": "~2.3",
+        "kriswallsmith/buzz": ">=0.10"
     },
     "autoload": {
         "psr-0": { "TestTools": "src/" }

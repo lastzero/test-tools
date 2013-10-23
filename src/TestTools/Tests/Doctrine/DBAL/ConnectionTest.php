@@ -27,11 +27,11 @@ class ConnectionTest extends UnitTestCase
         $this->assertTrue($this->db->usesFixtures());
     }
 
-    public function testOfflineMode()
+    public function testFixtureOfflineMode()
     {
-        $this->assertFalse($this->db->offlineModeEnabled());
-        $this->db->enableOfflineMode();
-        $this->assertTrue($this->db->offlineModeEnabled());
+        $this->assertFalse($this->db->fixtureOfflineModeEnabled());
+        $this->db->enableFixtureOfflineMode();
+        $this->assertTrue($this->db->fixtureOfflineModeEnabled());
 
         try {
             $this->db->fetchAll('SELECT * FROM example');
@@ -40,15 +40,17 @@ class ConnectionTest extends UnitTestCase
             // OK
         }
 
-        $this->db->disableOfflineMode();
-        $this->assertFalse($this->db->offlineModeEnabled());
+        $this->db->disableFixtureOfflineMode();
+        $this->assertFalse($this->db->fixtureOfflineModeEnabled());
     }
 
     public function testFetchAll()
     {
         $expected = array(
             array('id' => 1, 'name' => 'Foo', 'email' => 'foo@example.com'),
-            array('id' => 2, 'name' => 'Bar', 'email' => 'bar@example.com')
+            array('id' => 2, 'name' => 'Bar', 'email' => 'bar@example.com'),
+            array('id' => 4, 'name' => 'Baz', 'email' => 'baz@example.com'),
+            array('id' => 5, 'name' => 'New', 'email' => 'new@example.com')
         );
 
         $result = $this->db->fetchAll('SELECT * FROM users');
@@ -109,7 +111,7 @@ class ConnectionTest extends UnitTestCase
      */
     public function testLastInsertId()
     {
-        $expected = 4;
+        $expected = 5;
 
         $row = array('name' => 'New', 'email' => 'new@example.com');
 

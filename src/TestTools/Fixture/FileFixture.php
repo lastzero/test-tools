@@ -4,6 +4,7 @@ namespace TestTools\Fixture;
 
 use TestTools\Fixture\Exception\FixtureEmptyFilenameException;
 use TestTools\Fixture\Exception\FixtureNotFoundException;
+use TestTools\Fixture\Exception\FixtureNotValidException;
 use TestTools\Fixture\Exception\FixtureInvalidDirectoryException;
 
 /**
@@ -24,6 +25,7 @@ use TestTools\Fixture\Exception\FixtureInvalidDirectoryException;
 class FileFixture
 {
     protected $filename;
+    protected $data = array('result' => null, 'args' => array());
 
     public function __construct($filename)
     {
@@ -39,18 +41,49 @@ class FileFixture
         $this->filename = $filename;
     }
 
-    public function getData()
-    {
+    public function find() {
         if (!file_exists($this->filename)) {
             throw new FixtureNotFoundException('File not found: ' . $this->filename);
         }
 
-        return unserialize(file_get_contents($this->filename));
+        $data = unserialize(file_get_contents($this->filename));
+
+        if(!array_key_exists('result', $data) || !array_key_exists('args', $data)) {
+            throw new FixtureNotValidException('Data in fixture file is not valid');
+        }
+
+        $this->data = $data;
+
+        return $this;
     }
 
-    public function setData($data)
+    public function save() {
+        file_put_contents($this->filename, serialize($this->data));
+        return $this;
+    }
+
+    public function getResult()
     {
-        file_put_contents($this->filename, serialize($data));
+        return $this->data['result'];
+    }
+
+    public function getArguments()
+    {
+        return $this->data['args'];
+    }
+
+    public function setResult($result)
+    {
+        $this->data['result'] = $result;
+
+        return $this;
+    }
+
+    public function setArguments(array $arguments)
+    {
+        $this->data['args'] = $arguments;
+
+        return $this;
     }
 
     public static function filterAlphanumeric($string)

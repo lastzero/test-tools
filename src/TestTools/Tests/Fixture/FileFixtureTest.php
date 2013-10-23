@@ -40,25 +40,41 @@ class FileFixtureTest extends UnitTestCase {
     public function testConstructor () {
         $this->setExpectedException('TestTools\Fixture\Exception\FixtureEmptyFilenameException');
 
-        $fixture = new FileFixture('');
+        new FileFixture('');
     }
 
-    public function testGetData () {
-        $fixture = new FileFixture($this->getFixturePath() . '/fixture_test_get_data.fix');
-        $this->assertEquals(array('a' => 'b', array('b' => 'c')), $fixture->getData());
+    public function testFind () {
+        $fixture = new FileFixture($this->getFixturePath() . '/fixture_test_find.fix');
+        $fixture->find();
+        $this->assertEquals(array('a' => 'b', array('x' => 'y')), $fixture->getResult());
     }
     
     /**
      * @expectedException \TestTools\Fixture\Exception\FixtureNotFoundException
      */
-    public function testGetDataException () {
+    public function testFindException () {
         $fixture = new FileFixture($this->getFixturePath() . '/doesnotexist.fix');
-        $fixture->getData();
+        $fixture->find();
     }
 
-    public function testSetData () {
-        $fixture = new FileFixture($this->getFixturePath() . '/fixture_test_set_data.fix');
-        $fixture->setData(array('a' => 'b', array('x' => 'y')));
-        $this->assertEquals('a:2:{s:1:"a";s:1:"b";i:0;a:1:{s:1:"x";s:1:"y";}}', file_get_contents($this->getFixturePath() . '/fixture_test_set_data.fix'));
+    public function testSave () {
+        $filename = $this->getFixturePath() . '/fixture_test_save.fix';
+
+        if(file_exists($filename)) {
+            unlink($filename);
+        }
+
+        $fixture = new FileFixture($filename);
+        $arguments = array('1', '2', '3');
+        $values = array('a' => 'b', array('x' => 'y'));
+
+        $fixture->setResult($values);
+        $fixture->setArguments($arguments);
+        $fixture->save();
+
+        $this->assertEquals(
+            'a:2:{s:6:"result";a:2:{s:1:"a";s:1:"b";i:0;a:1:{s:1:"x";s:1:"y";}}s:4:"args";a:3:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";}}',
+            file_get_contents($filename)
+        );
     }
 }
