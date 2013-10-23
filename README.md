@@ -7,7 +7,7 @@ The test tools library provides the following components:
 
 * A basic **FileFixture** class to read and write serialized data from/to the file system
 * **SelfInitializingFixtureTrait** to add fixture support to almost any database or service client (record and playback)
-* Ready-to-use self initializing fixture classes for **Doctrine DBAL** (version >= 2.3) and **Buzz** (HTTP client)
+* Ready-to-use self-initializing fixture classes for **Doctrine DBAL** (SQL) and **Buzz** (HTTP)
 * **UnitTestCase** with integrated dependency injection container based on Symfony Components and PHPUnit
 * **WebTestCase** and **CommandTestCase** for functional testing of Symfony applications
 
