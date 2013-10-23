@@ -15,12 +15,10 @@ class Client extends BlackBox implements ClientInterface {
 
     public function send(RequestInterface $request, MessageInterface $response)
     {
-        $arguments = func_get_args();
-
-        $result = $this->callWithFixtures('send', $arguments);
+        $result = $this->callWithFixtures('send', func_get_args(), $resultArguments);
 
         /** @var MessageInterface $resultResponse */
-        $resultResponse = $arguments[1];
+        $resultResponse = $resultArguments[1];
         $response->setHeaders($resultResponse->getHeaders());
         $response->setContent($resultResponse->getContent());
 

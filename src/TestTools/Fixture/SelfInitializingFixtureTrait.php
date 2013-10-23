@@ -159,10 +159,11 @@ trait SelfInitializingFixtureTrait
      *
      * @param string $functionName
      * @param array $arguments
+     * @param array $resultArguments
      * @throws \Exception
      * @return mixed
      */
-    protected function callWithFixtures($functionName, array &$arguments = array())
+    protected function callWithFixtures($functionName, array $arguments = array(), &$resultArguments = null)
     {
         if ($this->usesFixtures()) {
             // Determine fixture file name
@@ -193,10 +194,6 @@ trait SelfInitializingFixtureTrait
 
                 $resultArguments = $fixture->getArguments();
 
-                foreach($arguments as $argIndex => $arg) {
-                    $arguments[$argIndex] = $resultArguments[$argIndex];
-                }
-
                 return $result;
             } catch(FixtureNotFoundException $e) {
                 // No fixture found, the original method has to be called
@@ -219,6 +216,7 @@ trait SelfInitializingFixtureTrait
 
         // Write return value / exception to file fixture
         if ($this->usesFixtures()) {
+            $resultArguments = $arguments;
             $fixture->setResult($result);
             $fixture->setArguments($arguments);
             $fixture->save();

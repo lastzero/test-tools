@@ -58,68 +58,57 @@ class Connection extends DoctrineDBALConnection
 
     public function fetchAll($sql, array $params = array(), $types = array())
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('fetchAll', $arguments);
+        return $this->callWithFixtures('fetchAll', func_get_args());
     }
 
     public function fetchAssoc($statement, array $params = array())
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('fetchAssoc', $arguments);
+        return $this->callWithFixtures('fetchAssoc', func_get_args());
     }
 
     public function fetchArray($statement, array $params = array())
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('fetchArray', $arguments);
+        return $this->callWithFixtures('fetchArray', func_get_args());
     }
 
     public function fetchColumn($statement, array $params = array(), $colnum = 0)
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('fetchColumn', $arguments);
+        return $this->callWithFixtures('fetchColumn', func_get_args());
     }
 
     public function delete($tableName, array $identifier, array $types = array())
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('delete', $arguments);
+        return $this->callWithFixtures('delete', func_get_args());
     }
 
     public function update($tableName, array $data, array $identifier, array $types = array())
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('update', $arguments);
+        return $this->callWithFixtures('update', func_get_args());
     }
 
     public function executeUpdate($query, array $params = array(), array $types = array())
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('executeUpdate', $arguments);
+        return $this->callWithFixtures('executeUpdate', func_get_args());
     }
 
     public function insert($tableName, array $data, array $types = array())
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('insert', $arguments);
+        return $this->callWithFixtures('insert', func_get_args());
     }
 
     public function quoteIdentifier($str)
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('quoteIdentifier', $arguments);
+        return $this->callWithFixtures('quoteIdentifier', func_get_args());
     }
 
     public function quote($input, $type = null)
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('quote', $arguments);
+        return $this->callWithFixtures('quote', func_get_args());
     }
 
     public function project($query, array $params, Closure $function)
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('project', $arguments);
+        return $this->callWithFixtures('project', func_get_args());
     }
 
     /**
@@ -134,7 +123,6 @@ class Connection extends DoctrineDBALConnection
      */
     public function lastInsertId($seqName = null)
     {
-        $arguments = func_get_args();
-        return $this->callWithFixtures('lastInsertId', $arguments);
+        return $this->callWithFixtures('lastInsertId', func_get_args());
     }
 }

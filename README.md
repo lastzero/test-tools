@@ -68,7 +68,7 @@ work with file based fixtures:
 
         public function bar($name, $type, array $baz = array())
         {
-            return $this->callWithFixtures('bar', array($name, $type, $baz));
+            return $this->callWithFixtures('bar', func_get_args());
         }
     }
 
