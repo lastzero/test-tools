@@ -108,3 +108,7 @@ If you are using Composer, you just have to add "lastzero/test-tools" to your co
     "require": {
         "lastzero/test-tools": ">=0.6"
     }
+
+By making a donation, you can support the further development and maintenance of this library:
+
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=lastzero&url=https://github.com/lastzero/test-tools&title=Test Tools for PHP&language=&tags=github&category=software)
