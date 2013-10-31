@@ -54,8 +54,9 @@ abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
         $this->container = $container;
     }
     
-    protected function configureContainerFixturePath () {
+    protected function configureContainer () {
         $this->container->setParameter('fixture.path', $this->getFixturePath());
+        $this->container->setParameter('base.path', $this->getBasePath());
     }
     
     protected function getContainer() 
@@ -64,14 +65,14 @@ abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
             // Use cached container (creating a new container from yml is too slow)
             $this->setContainer(clone self::$containers[$this->getTestBasePath()]);
             
-            $this->configureContainerFixturePath();
+            $this->configureContainer();
             
             $this->container->clearInstances();
         } elseif(!$this->container) {
             // Create new container
             $this->setContainer(new TestContainerBuilder());
             
-            $this->configureContainerFixturePath();
+            $this->configureContainer();
             
             $locator = new FileLocator($this->getTestBasePath());
             $this->loader = new YamlFileLoader($this->container, $locator);

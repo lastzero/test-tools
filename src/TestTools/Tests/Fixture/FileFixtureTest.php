@@ -11,6 +11,17 @@ use TestTools\TestCase\UnitTestCase;
  * @license MIT
  */
 class FileFixtureTest extends UnitTestCase {
+    public function testBasePath () {
+        $result = $this->getBasePath();
+        $this->assertEquals(0, strpos(strrev($result), strrev('TestTools')));
+    }
+
+    public function testFixturePath () {
+        $result = $this->getFixturePath();
+        $this->assertEquals(36, strpos(strrev($result), strrev('TestTools')));
+        $this->assertEquals(21, strpos(strrev($result), strrev('_fixture')));
+    }
+
     public function testFilterAlphanumeric () {
         $this->assertEquals('_abc123', FileFixture::filterAlphanumeric('_-abc@#$%^&*(123,./<>?:"{}|\]['));
         $this->assertEquals('', FileFixture::filterAlphanumeric(''));        

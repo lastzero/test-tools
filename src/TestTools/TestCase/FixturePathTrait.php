@@ -34,17 +34,17 @@ trait FixturePathTrait
     protected function setFixturePath($path)
     {
         // @codeCoverageIgnoreStart
-        if(!is_dir($path)) {
+        if (!is_dir($path)) {
             mkdir($path, 0755, true);
         }
         // @codeCoverageIgnoreEnd
 
-        $this->fixturePath = (string) $path;
+        $this->fixturePath = (string)$path;
     }
 
     protected function getFixturePath()
     {
-        if($this->fixturePath == '') {
+        if ($this->fixturePath == '') {
             $testFilename = $this->getTestFilename();
 
             $subDirectory = substr(
@@ -53,7 +53,7 @@ trait FixturePathTrait
                 strlen($this->testsPostfix) * -1
             );
 
-            $fixturePath = $this->getTestBasePath() . $this->fixturesDirectory. $subDirectory;
+            $fixturePath = $this->getTestBasePath() . $this->fixturesDirectory . $subDirectory;
 
             $this->setFixturePath($fixturePath);
         }
@@ -63,12 +63,12 @@ trait FixturePathTrait
 
     protected function setTestBasePath($path)
     {
-        $this->testBasePath = (string) $path;
+        $this->testBasePath = (string)$path;
     }
 
     protected function getTestBasePath()
     {
-        if($this->testBasePath == '') {
+        if ($this->testBasePath == '') {
             $testDirectory = $this->getTestDirectory();
 
             $basePath = substr(
@@ -81,5 +81,10 @@ trait FixturePathTrait
         }
 
         return $this->testBasePath;
+    }
+
+    protected function getBasePath()
+    {
+        return realpath($this->getTestBasePath() . '/..');
     }
 }
