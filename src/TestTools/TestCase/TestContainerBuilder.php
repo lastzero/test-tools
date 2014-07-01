@@ -12,5 +12,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class TestContainerBuilder extends ContainerBuilder {
     public function clearInstances() {
         $this->services = array();
+        $this->set('service_container', $this);
     }
 }
