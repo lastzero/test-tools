@@ -103,10 +103,10 @@ regular DI configuration of your application:
         }
     }
 
-If you are using Composer, you just have to add "lastzero/test-tools" to your composer.json file:
+If you are using Composer, just add "lastzero/test-tools" to your composer.json file:
 
     "require": {
-        "lastzero/test-tools": ">=0.6"
+        "lastzero/test-tools": "~0.7"
     }
 
 By making a donation, you can support the further development and maintenance of this library:
