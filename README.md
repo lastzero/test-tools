@@ -48,21 +48,12 @@ dependency injection or the config file format, you can find more information on
 
 http://symfony.com/doc/current/components/dependency_injection/introduction.html
 
-Since global state must be avoided while performing tests, the service instances are not 
-cached between tests. The service definitions in the container are reused however. This significantly
-improves test performance compared to a full container reinitialization before each test (about 5 to 10 times faster).
+Since global state must be avoided while performing tests, the service instances are not cached between tests. The service definitions in the container are reused however. This significantly improves test performance compared to a full container reinitialization before each test (about 5 to 10 times faster).
 
-**Note**: A config parameter "fixture.path" is automatically set based on the test class filename and path 
-to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme.
-The directory is created automatically.
+**Note**: A config parameter "fixture.path" (for storing file based fixtures) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically.
 
-When using a dependency injection container in conjunction with fixtures, you don't need to care about 
-different environments such as development and production:
-Configuration details (e.g. login credentials) must be valid for development 
-environments only, since service / database requests should be replaced by fixtures from the file system after the 
-corresponding tests were running for the first time. If a test fails on Jenkins or Travis CI
-because of invalid URLs or credentials in config.yml, you must make sure that all code that 
-accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
+When using a dependency injection container in conjunction with fixtures, you don't need to care about different environments such as development and production:
+Configuration details (e.g. login credentials) must be valid for development environments only, since service / database requests should be replaced by fixtures from the file system after the  corresponding tests were running for the first time. If a test fails on Jenkins or Travis CI because of invalid URLs or credentials in config.yml, you must make sure that all code that  accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
 
 Self-initializing Fixtures
 --------------------------
@@ -81,9 +72,8 @@ Self-initializing Fixtures
         }
     }
 
-Have a look at the Doctrine fixture connection class (TestTools\Doctrine\DBAL\Connection.php) to see an
-example. It works as a wrapper for the standard connection class (white box inheritance). The Buzz client
-uses the BlackBox class to encapsulate any ClientInterface (black box inheritance)
+Have a look at the Doctrine fixture connection class (`TestTools\Doctrine\DBAL\Connection`) to see an
+example. It works as a wrapper for the standard connection class (white box inheritance). Black box inheritance (`TestTools\Fixture\BlackBox`) is used by the Buzz client (`TestTools\Buzz\Client`) to encapsulate any ClientInterface.
 
 The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
 types of external data stores (databases) and services (SOAP/REST):
