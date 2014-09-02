@@ -5,16 +5,20 @@ Test Tools for PHP
 [![Latest Stable Version](https://poser.pugx.org/lastzero/test-tools/v/stable.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![Total Downloads](https://poser.pugx.org/lastzero/test-tools/downloads.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![License](https://poser.pugx.org/lastzero/test-tools/license.svg)](https://packagist.org/packages/lastzero/test-tools)
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=lastzero&url=https://github.com/lastzero/test-tools&title=Test Tools for PHP&language=&tags=github&category=software)
 
-The test tools library provides the following components:
+**Dependency Injection and self-initializing fixtures for PHPUnit.**
 
-* A basic **FileFixture** class to read and write serialized data from/to the file system
-* **SelfInitializingFixtureTrait** and **BlackBox** to add fixture support to almost any database or service client (record and playback)
-* Ready-to-use self-initializing fixture classes for **Doctrine DBAL** (SQL) and **Buzz** (HTTP)
-* **UnitTestCase** with integrated dependency injection container based on Symfony Components and PHPUnit
-* **WebTestCase** and **CommandTestCase** for functional testing of Symfony applications
+* **UnitTestCase** extends `PHPUnit_Framework_TestCase` with an integrated Symfony2 dependency injection container
+* **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
+* **FileFixture** reads and writes serialized data from/to the file system
+* **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback)
+* This library already contains ready-to-use self-initializing fixture classes for **Doctrine DBAL** (SQL) and **Buzz** (HTTP)
 
-TestTools\TestCase\UnitTestCase.php contains an integrated DI container for more productive testing:
+Dependency Injection
+--------------------
+
+`TestTools\TestCase\UnitTestCase.php` contains an integrated DI container for more productive testing:
 
     use TestTools\TestCase\UnitTestCase;
 
@@ -59,9 +63,11 @@ environments only, since service / database requests should be replaced by fixtu
 corresponding tests were running for the first time. If a test fails on Jenkins or Travis CI
 because of invalid URLs or credentials in config.yml, you must make sure that all code that 
 accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
+
+Self-initializing Fixtures
+--------------------------
  
-You can use TestTools\Fixture\SelfInitializingFixtureTrait.php to easily make any existing class
-work with file based fixtures:
+`TestTools\Fixture\SelfInitializingFixtureTrait.php` enables existing classes to work with file based fixtures:
 
     use TestTools\Fixture\SelfInitializingFixtureTrait;
 
@@ -111,7 +117,3 @@ If you are using Composer, just add "lastzero/test-tools" to your composer.json 
     "require": {
         "lastzero/test-tools": "~0.7"
     }
-
-By making a donation, you can support the further development and maintenance of this library:
-
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=lastzero&url=https://github.com/lastzero/test-tools&title=Test Tools for PHP&language=&tags=github&category=software)
