@@ -7,7 +7,7 @@ Test Tools for PHPUnit
 [![License](https://poser.pugx.org/lastzero/test-tools/license.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=lastzero&url=https://github.com/lastzero/test-tools&title=Test Tools for PHP&language=&tags=github&category=software)
 
-**The goal of this project is to increase testing efficiency by leveraging the power of dependency injection and self-initializing fixtures for PHPUnit tests.**
+**The goal of this project is to increase testing productivity by leveraging the power of dependency injection and self-initializing fixtures for PHPUnit tests.**
 
 * **UnitTestCase** extends `PHPUnit_Framework_TestCase` with an integrated Symfony2 dependency injection container
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
