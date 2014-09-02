@@ -90,7 +90,7 @@ types of external data stores (databases) and services (SOAP/REST):
 
 http://martinfowler.com/bliki/SelfInitializingFake.html
 
-TestTools\TestCase\WebTestCase.php can be used for functional testing of Symfony controllers based on the 
+`TestTools\TestCase\WebTestCase.php` can be used for functional testing of Symfony controllers based on the 
 regular DI configuration of your application:
 
     use TestTools\TestCase\WebTestCase;
@@ -112,7 +112,10 @@ regular DI configuration of your application:
         }
     }
 
-If you are using Composer, just add "lastzero/test-tools" to your composer.json file:
+Composer
+--------
+
+If you are using composer, just add "lastzero/test-tools" to your composer.json file:
 
     "require": {
         "lastzero/test-tools": "~0.7"
