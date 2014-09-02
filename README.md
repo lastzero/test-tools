@@ -1,5 +1,5 @@
-Test Tools for PHP
-==================
+Test Tools for PHPUnit
+======================
 
 [![Build Status](https://travis-ci.org/lastzero/test-tools.png?branch=master)](https://travis-ci.org/lastzero/test-tools)
 [![Latest Stable Version](https://poser.pugx.org/lastzero/test-tools/v/stable.svg)](https://packagist.org/packages/lastzero/test-tools)
@@ -7,7 +7,7 @@ Test Tools for PHP
 [![License](https://poser.pugx.org/lastzero/test-tools/license.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=lastzero&url=https://github.com/lastzero/test-tools&title=Test Tools for PHP&language=&tags=github&category=software)
 
-**Dependency Injection and self-initializing fixtures for PHPUnit.**
+**The goal of this project is increase testing productivity by leveraging the power of dependency injection and self-initializing fixtures for unit tests.**
 
 * **UnitTestCase** extends `PHPUnit_Framework_TestCase` with an integrated Symfony2 dependency injection container
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
@@ -18,7 +18,7 @@ Test Tools for PHP
 Dependency Injection
 --------------------
 
-`TestTools\TestCase\UnitTestCase.php` contains an integrated DI container for more productive testing:
+`TestTools\TestCase\UnitTestCase` contains an integrated DI container for more productive testing:
 
     use TestTools\TestCase\UnitTestCase;
 
@@ -67,7 +67,7 @@ accesses external resources is using fixtures (or mock objects) and that all fix
 Self-initializing Fixtures
 --------------------------
  
-`TestTools\Fixture\SelfInitializingFixtureTrait.php` enables existing classes to work with file based fixtures:
+`TestTools\Fixture\SelfInitializingFixtureTrait` enables existing classes to work with file based fixtures:
 
     use TestTools\Fixture\SelfInitializingFixtureTrait;
 
