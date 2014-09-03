@@ -70,7 +70,7 @@ http://martinfowler.com/bliki/SelfInitializingFake.html
         }
     }
 
-The Doctrine fixture connection class (`TestTools\Doctrine\DBAL\Connection`) serves as a ready-to-use example. It works as a wrapper for the standard connection class (white box inheritance). Black box inheritance (`TestTools\Fixture\BlackBox`) is used by the Buzz client (`TestTools\Buzz\Client`) to encapsulate any ClientInterface.
+The Doctrine connection class (`TestTools\Doctrine\DBAL\Connection`) serves as a ready-to-use example. It works as a wrapper for the standard connection class (white box inheritance). Black box inheritance (`TestTools\Fixture\BlackBox`) is used by the Buzz client (`TestTools\Buzz\Client`) to encapsulate any ClientInterface.
 
 `TestTools\TestCase\WebTestCase.php` can be used for functional testing of Symfony controllers based on the 
 regular DI configuration of your application:
