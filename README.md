@@ -18,7 +18,7 @@ Test Tools for PHPUnit
 Dependency Injection
 --------------------
 
-`TestTools\TestCase\UnitTestCase` contains an integrated DI container for more productive testing:
+`TestTools\TestCase\UnitTestCase` contains an integrated Symfony2 DI container for more productive testing:
 
     use TestTools\TestCase\UnitTestCase;
 
@@ -55,8 +55,12 @@ Configuration details (e.g. login credentials) must be valid for development env
 
 Self-initializing Fixtures
 --------------------------
+The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
+types of external data stores (databases) and services (SOAP/REST):
+
+http://martinfowler.com/bliki/SelfInitializingFake.html 
  
-`TestTools\Fixture\SelfInitializingFixtureTrait` enables existing classes to work with file based fixtures:
+`TestTools\Fixture\SelfInitializingFixtureTrait` enables existing classes to work with file based fixtures (record and playback):
 
     use TestTools\Fixture\SelfInitializingFixtureTrait;
 
@@ -70,13 +74,7 @@ Self-initializing Fixtures
         }
     }
 
-Have a look at the Doctrine fixture connection class (`TestTools\Doctrine\DBAL\Connection`) to see an
-example. It works as a wrapper for the standard connection class (white box inheritance). Black box inheritance (`TestTools\Fixture\BlackBox`) is used by the Buzz client (`TestTools\Buzz\Client`) to encapsulate any ClientInterface.
-
-The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
-types of external data stores (databases) and services (SOAP/REST):
-
-http://martinfowler.com/bliki/SelfInitializingFake.html
+The Doctrine fixture connection class (`TestTools\Doctrine\DBAL\Connection`) serves as a ready-to-use example. It works as a wrapper for the standard connection class (white box inheritance). Black box inheritance (`TestTools\Fixture\BlackBox`) is used by the Buzz client (`TestTools\Buzz\Client`) to encapsulate any ClientInterface.
 
 `TestTools\TestCase\WebTestCase.php` can be used for functional testing of Symfony controllers based on the 
 regular DI configuration of your application:
