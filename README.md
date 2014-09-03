@@ -50,6 +50,42 @@ Since global state must be avoided while performing tests, the service instances
 
 **Note**: A config parameter "fixture.path" (for storing file based fixtures) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically.
 
+Example container configuration (`TestTools/Tests/config.yml`):
+```
+parameters:
+    dbal.params:
+        driver:         mysqli
+        host:           localhost
+        port:           3306
+        dbname:         testtools
+        charset:        utf8
+        user:           testtools
+        password:       testtools
+        
+services:
+    dbal.driver:
+        class: Doctrine\DBAL\Driver\Mysqli\Driver
+
+    dbal.connection:
+        class: TestTools\Doctrine\DBAL\Connection
+        arguments:
+            - %dbal.params%
+            - @dbal.driver
+        calls:
+            - [setFixturePrefix, ['sql']]
+            - [useFixtures, ["%fixture.path%"]]
+
+    buzz.client:
+        class: Buzz\Client\FileGetContents
+
+    buzz.fixture:
+        class: TestTools\Buzz\Client
+        arguments:
+            - @buzz.client
+        calls:
+            - [useFixtures, ["%fixture.path%"]]
+```
+
 When using a dependency injection container in conjunction with fixtures, you don't need to care about different environments such as development and production:
 Configuration details (e.g. login credentials) must be valid for development environments only, since service / database requests should be replaced by fixtures from the file system after the  corresponding tests were running for the first time. If a test fails on Jenkins or Travis CI because of invalid URLs or credentials in config.yml, you must make sure that all code that  accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
 
