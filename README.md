@@ -38,6 +38,8 @@ Dependency Injection
         }
     }
 
+*Note: UnitTestCase can be used to test any framework or library, just like PHPUnit_Framework_TestCase. It is not limited to the Symfony2 ecosystem. The Symfony2 DI container was primarily chosen, because of it's easy to understand container configuration in YAML.*
+
 To define services, simply create a `config.yml` (optionally `config.local.yml` for local modifications) in your base test directory, for example
 
     Bundle/Example/Tests/config.yml
@@ -47,47 +49,6 @@ The YAML file must contain the sections "parameters" and "services". If you're n
 http://symfony.com/doc/current/components/dependency_injection/introduction.html
 
 Since global state must be avoided while performing tests, the service instances are not cached between tests. The service definitions in the container are reused however. This significantly improves test performance compared to a full container reinitialization before each test (about 5 to 10 times faster).
-
-**Note**: A config parameter "fixture.path" (for storing file based fixtures) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically.
-
-Example container configuration (`TestTools/Tests/config.yml`):
-```
-parameters:
-    dbal.params:
-        driver:         mysqli
-        host:           localhost
-        port:           3306
-        dbname:         testtools
-        charset:        utf8
-        user:           testtools
-        password:       testtools
-        
-services:
-    dbal.driver:
-        class: Doctrine\DBAL\Driver\Mysqli\Driver
-
-    dbal.connection:
-        class: TestTools\Doctrine\DBAL\Connection
-        arguments:
-            - %dbal.params%
-            - @dbal.driver
-        calls:
-            - [setFixturePrefix, ['sql']]
-            - [useFixtures, ["%fixture.path%"]]
-
-    buzz.client:
-        class: Buzz\Client\FileGetContents
-
-    buzz.fixture:
-        class: TestTools\Buzz\Client
-        arguments:
-            - @buzz.client
-        calls:
-            - [useFixtures, ["%fixture.path%"]]
-```
-
-When using a dependency injection container in conjunction with fixtures, you don't need to care about different environments such as development and production:
-Configuration details (e.g. login credentials) must be valid for development environments only, since service / database requests should be replaced by fixtures from the file system after the  corresponding tests were running for the first time. If a test fails on Jenkins or Travis CI because of invalid URLs or credentials in config.yml, you must make sure that all code that  accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
 
 Self-initializing Fixtures
 --------------------------
@@ -133,6 +94,49 @@ regular DI configuration of your application:
             $this->assertEquals(3.14, $response->getContent());
         }
     }
+
+DI container configuration for self-initializing fixtures
+---------------------------------------------------------
+A config parameter "fixture.path" (for storing file based fixtures) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically.
+
+Example container configuration (`TestTools/Tests/config.yml`):
+```
+parameters:
+    dbal.params:
+        driver:         mysqli
+        host:           localhost
+        port:           3306
+        dbname:         testtools
+        charset:        utf8
+        user:           testtools
+        password:       testtools
+        
+services:
+    dbal.driver:
+        class: Doctrine\DBAL\Driver\Mysqli\Driver
+
+    dbal.connection:
+        class: TestTools\Doctrine\DBAL\Connection
+        arguments:
+            - %dbal.params%
+            - @dbal.driver
+        calls:
+            - [setFixturePrefix, ['sql']]
+            - [useFixtures, ["%fixture.path%"]]
+
+    buzz.client:
+        class: Buzz\Client\FileGetContents
+
+    buzz.fixture:
+        class: TestTools\Buzz\Client
+        arguments:
+            - @buzz.client
+        calls:
+            - [useFixtures, ["%fixture.path%"]]
+```
+
+When using a dependency injection container in conjunction with fixtures, you don't need to care about different environments such as development and production:
+Configuration details (e.g. login credentials) must be valid for development environments only, since service / database requests should be replaced by fixtures from the file system after the  corresponding tests were running for the first time. If a test fails on Jenkins or Travis CI because of invalid URLs or credentials in config.yml, you must make sure that all code that  accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
 
 Composer
 --------
