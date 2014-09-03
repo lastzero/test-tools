@@ -12,7 +12,7 @@ Test Tools for PHPUnit
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
 * **FileFixture** reads and writes serialized data from/to the file system
 * **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback)
-* This library already contains ready-to-use self-initializing fixture classes for **Doctrine DBAL** (SQL) and **Buzz** (HTTP)
+* To cover two of the most common use cases, self-initializing fixtures for **Doctrine DBAL** (SQL) and **Buzz** (HTTP) are supported out of the box
 
 Dependency Injection
 --------------------
@@ -43,7 +43,7 @@ To define services, simply create a `config.yml` (optionally `config.local.yml` 
 
     Bundle/Example/Tests/config.yml
     
-The YAML file must contain the sections "parameters" and "services". If you're not yet familiar with dependency injection or the config file format, you can find more information on symfony.com:
+The YAML file must contain the sections "parameters" and "services". If you're not yet familiar with dependency injection or the config file format, please read the documentation on symfony.com (it's really simple):
 
 http://symfony.com/doc/current/components/dependency_injection/introduction.html
 
