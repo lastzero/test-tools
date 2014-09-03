@@ -38,7 +38,7 @@ Dependency Injection
         }
     }
 
-*Note: UnitTestCase can be used to test any framework or library, just like PHPUnit_Framework_TestCase. It is not limited to the Symfony2 ecosystem. The Symfony2 DI container was primarily chosen, because of it's easy to understand container configuration in YAML.*
+*Note: UnitTestCase can be used to test any application, framework or library, just like PHPUnit_Framework_TestCase. It is not limited to the Symfony2 ecosystem. The Symfony2 DI container was primarily chosen, because of it's easy to understand container configuration in YAML.*
 
 To define services, simply create a `config.yml` (optionally `config.local.yml` for local modifications) in your base test directory, for example
 
