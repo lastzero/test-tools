@@ -14,13 +14,13 @@ class Request extends GuzzleRequest
 
     public function send()
     {
-        return $this->callWithFixtures('send', array($this->__toString()));
-    }
+        $body = '';
 
-    public function getResponse()
-    {
-        $result = $this->response;
+        if(property_exists($this, 'body')) {
+            $body = $this->body;
+        }
 
-        return $result;
+        $fingerprint = sha1(serialize(array($body, $this->getUrl(), $this->getMethod(), $this->getQuery(true))));
+        return $this->callWithFixtures('send', array($fingerprint));
     }
 }
