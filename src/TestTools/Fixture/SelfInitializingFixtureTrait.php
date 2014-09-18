@@ -127,6 +127,16 @@ trait SelfInitializingFixtureTrait
     }
 
     /**
+     * Returns the fixture file path
+     *
+     * @return string
+     */
+    public function getFixturePath()
+    {
+        return $this->_fixturePath;
+    }
+
+    /**
      * Prevents any connection to external data source (database or web service)
      *
      * Can be used for testing only environments (Jenkins, Travis CI,...)
