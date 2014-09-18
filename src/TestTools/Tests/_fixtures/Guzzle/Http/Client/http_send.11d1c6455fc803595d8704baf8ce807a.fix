@@ -1,0 +1,5 @@
+a:2:{s:6:"result";C:28:"Guzzle\Http\Message\Response":336:{{"status":200,"body":"{\"foo\": \"bar\"}\n","headers":{"Access-Control-Allow-Origin":["*"],"Content-Type":["application\/json; charset=ISO-8859-1"],"Date":["Thu, 18 Sep 2014 20:52:37 GMT"],"Server":["Google Frontend"],"Cache-Control":["private"],"Alternate-Protocol":["80:quic,p=0.002,80:quic,p=0.002"],"Transfer-Encoding":["chunked"]}}}s:4:"args";a:1:{i:0;s:124:"GET /foo/bar HTTP/1.1
+Host: echo.jsontest.com
+User-Agent: Guzzle/3.9.2 curl/7.22.0 PHP/5.4.28-1+deb.sury.org~precise+1
+
+";}}

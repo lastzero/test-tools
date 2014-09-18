@@ -52,16 +52,14 @@ class ClientTest extends UnitTestCase
 
     public function testSend()
     {
-        $request = $this->client->get('http://date.jsontest.com/');
+        $request = $this->client->get('http://echo.jsontest.com/foo/bar');
         $this->assertEquals('new', $request->getState());
         $response = $request->send();
         $expectedType = 'application/json; charset=ISO-8859-1';
         $this->assertEquals($expectedType, $response->getContentType());
         $result = $response->json();
         $expectedResult = array(
-            'time' => '08:43:25 PM',
-            'milliseconds_since_epoch' => 1411073005696,
-            'date' => '09-18-2014'
+            'foo' => 'bar'
         );
         $this->assertEquals($expectedResult, $result);
     }
