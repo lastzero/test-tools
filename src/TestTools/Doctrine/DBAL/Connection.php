@@ -111,6 +111,21 @@ class Connection extends DoctrineDBALConnection
         return $this->callWithFixtures('project', func_get_args());
     }
 
+    public function beginTransaction()
+    {
+        return $this->callWithFixtures('beginTransaction', func_get_args());
+    }
+
+    public function commit()
+    {
+        return $this->callWithFixtures('commit', func_get_args());
+    }
+
+    public function rollBack()
+    {
+        return $this->callWithFixtures('rollBack', func_get_args());
+    }
+
     /**
      * This is a bit of a hack, since static fixtures will always return the same ID. Make sure to write
      * your tests accordingly:

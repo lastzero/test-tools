@@ -145,4 +145,19 @@ class ConnectionTest extends UnitTestCase
 
         $this->assertEquals($expected, $result);
     }
+
+    public function testCommit()
+    {
+        $this->db->beginTransaction();
+        $this->db->commit();
+    }
+
+    /**
+     * @expectedException \Doctrine\DBAL\ConnectionException
+     */
+    public function testRollBack()
+    {
+        $this->db->beginTransaction();
+        $this->db->rollBack();
+    }
 }
