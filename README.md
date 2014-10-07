@@ -8,11 +8,11 @@ Test Tools for PHPUnit
 
 **The goal of this project is to increase testing productivity by leveraging the power of dependency injection and self-initializing fixtures for PHPUnit tests.**
 
-* **UnitTestCase** extends `PHPUnit_Framework_TestCase` with a Symfony2 dependency injection container
+* **UnitTestCase** extends `PHPUnit_Framework_TestCase` with a configurable dependency injection container
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
 * **FileFixture** reads and writes serialized data from/to the file system
 * **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback)
-* To cover two of the most common use cases, **Doctrine DBAL** (SQL) and **Buzz** (HTTP) are supported out of the box
+* To cover two of the most common use cases, **Doctrine DBAL** (SQL), **Guzzle** and **Buzz** (HTTP) are supported out of the box
 
 Dependency Injection
 --------------------
