@@ -1,0 +1,4 @@
+a:2:{s:6:"result";i:123;s:4:"args";a:2:{i:0;s:3:"bar";i:1;s:85:"Argument could not be serialized: TestTools\Tests\Fixture\NotSerializable Object
+(
+)
+";}}

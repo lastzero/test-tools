@@ -88,4 +88,31 @@ class FileFixtureTest extends UnitTestCase {
             file_get_contents($filename)
         );
     }
+
+    public function testSetArguments()
+    {
+        $object = new NotSerializable();
+
+        $result = 123;
+        $arguments = array(
+            'bar',
+            $object
+        );
+
+        $filename = $this->getFixturePath() . '/not_serializable_argument.fix';
+        $fixture = new FileFixture($filename);
+        $fixture->setArguments($arguments);
+        $fixture->setResult($result);
+
+        $fixture->save();
+
+        $serializedObject = 'Argument could not be serialized: TestTools\Tests\Fixture\NotSerializable Object' . "\n(\n)\n";
+
+        $expected = array(
+            'bar',
+            $serializedObject
+        );
+
+        $this->assertEquals($expected, $fixture->getArguments());
+    }
 }
