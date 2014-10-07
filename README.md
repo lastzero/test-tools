@@ -12,7 +12,7 @@ Test Tools for PHPUnit
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
 * **FileFixture** reads and writes serialized data from/to the file system
 * **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback)
-* To cover two of the most common use cases, **Doctrine DBAL** (SQL), **Guzzle** and **Buzz** (HTTP) are supported out of the box
+* To cover some of the most common use cases, **Doctrine DBAL** (SQL), **Guzzle** and **Buzz** (HTTP) are supported out of the box
 
 Dependency Injection
 --------------------
