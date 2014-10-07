@@ -81,6 +81,14 @@ class FileFixture
 
     public function setArguments(array $arguments)
     {
+        foreach($arguments as &$argument) {
+            try {
+                serialize($argument);
+            } catch (\Exception $e) {
+                $argument = 'Argument could not be serialized: ' . print_r($argument, true);
+            }
+        }
+
         $this->data['args'] = $arguments;
 
         return $this;
