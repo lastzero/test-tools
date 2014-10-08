@@ -80,7 +80,11 @@ trait SelfInitializingFixtureTrait
      */
     public function useFixtures($fixturePath)
     {
-        $this->_fixturePath = FileFixture::normalizePath($fixturePath);
+        if($fixturePath) {
+            $this->_fixturePath = FileFixture::normalizePath($fixturePath);
+        } else {
+            $this->disableFixtures();
+        }
     }
 
     /**
