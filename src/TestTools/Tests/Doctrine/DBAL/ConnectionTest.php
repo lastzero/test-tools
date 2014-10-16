@@ -152,9 +152,6 @@ class ConnectionTest extends UnitTestCase
         $this->db->commit();
     }
 
-    /**
-     * @expectedException \Doctrine\DBAL\ConnectionException
-     */
     public function testRollBack()
     {
         $this->db->beginTransaction();

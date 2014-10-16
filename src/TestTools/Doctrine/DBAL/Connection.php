@@ -5,6 +5,7 @@ namespace TestTools\Doctrine\DBAL;
 use Closure;
 use Doctrine\DBAL\Connection as DoctrineDBALConnection;
 use TestTools\Fixture\SelfInitializingFixtureTrait;
+use Doctrine\DBAL\ConnectionException;
 
 /**
  * This class works as a wrapper for the standard Doctrine DBAL connection class.
@@ -113,17 +114,41 @@ class Connection extends DoctrineDBALConnection
 
     public function beginTransaction()
     {
-        return $this->callWithFixtures('beginTransaction', func_get_args());
+        if ($this->usesFixtures()) {
+            try {
+                $this->callWithFixtures('beginTransaction', func_get_args());
+            } catch (ConnectionException $e) {
+                // That's ok!
+            }
+        } else {
+            $this->beginTransaction();
+        }
     }
 
     public function commit()
     {
-        return $this->callWithFixtures('commit', func_get_args());
+        if ($this->usesFixtures()) {
+            try {
+                $this->callWithFixtures('commit', func_get_args());
+            } catch (ConnectionException $e) {
+                // That's ok!
+            }
+        } else {
+            $this->commit();
+        }
     }
 
     public function rollBack()
     {
-        return $this->callWithFixtures('rollBack', func_get_args());
+        if ($this->usesFixtures()) {
+            try {
+                return $this->callWithFixtures('rollBack', func_get_args());
+            } catch (ConnectionException $e) {
+                // That's ok!
+            }
+        } else {
+            $this->rollBack();
+        }
     }
 
     /**
