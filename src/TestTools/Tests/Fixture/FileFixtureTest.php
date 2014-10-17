@@ -115,4 +115,19 @@ class FileFixtureTest extends UnitTestCase {
 
         $this->assertEquals($expected, $fixture->getArguments());
     }
+
+    public function testNotSerializableResult()
+    {
+        $object = new NotSerializable();
+
+        $filename = $this->getFixturePath() . '/not_serializable_result.fix';
+        $fixture = new FileFixture($filename);
+        $fixture->setResult($object);
+
+        $fixture->save();
+
+        $expected = 'Result could not be serialized: TestTools\Tests\Fixture\NotSerializable Object' . "\n(\n)\n";
+
+        $this->assertEquals($expected, $fixture->getResult());
+    }
 }

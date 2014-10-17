@@ -74,6 +74,12 @@ class FileFixture
 
     public function setResult($result)
     {
+        try {
+            serialize($result);
+        } catch (\Exception $e) {
+            $result = 'Result could not be serialized: ' . print_r($result, true);
+        }
+
         $this->data['result'] = $result;
 
         return $this;
