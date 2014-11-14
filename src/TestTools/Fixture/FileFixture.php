@@ -64,7 +64,11 @@ class FileFixture
 
     public function getResult()
     {
-        return $this->data['result'];
+        if (is_object($this->data['result']) && $this->data['result'] instanceof NonSerializableExceptionContainer) {
+            return $this->data['result']->recreate();
+        } else {
+            return $this->data['result'];
+        }
     }
 
     public function getArguments()
@@ -72,12 +76,22 @@ class FileFixture
         return $this->data['args'];
     }
 
+    private function transformNonSerializableException($exception)
+    {
+        $transformed = \Mockery::mock(get_class($exception));
+        return $transformed;
+    }
+
     public function setResult($result)
     {
         try {
             serialize($result);
         } catch (\Exception $e) {
-            $result = 'Result could not be serialized: ' . print_r($result, true);
+            if ($result instanceof \Exception) {
+                $result = new NonSerializableExceptionContainer($result);
+            } else {
+                $result = 'Result could not be serialized: ' . print_r($result, true);
+            }
         }
 
         $this->data['result'] = $result;

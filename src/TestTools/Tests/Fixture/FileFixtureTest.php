@@ -130,4 +130,20 @@ class FileFixtureTest extends UnitTestCase {
 
         $this->assertEquals($expected, $fixture->getResult());
     }
+
+    public function testNonSerializableExceptionIsReproducable()
+    {
+        $object = new NotSerializableException("testmessage", 42);
+        
+        $filename = $this->getFixturePath() . '/not_serializable_exception.fix';
+        $fixture = new FileFixture($filename);
+        $fixture->setResult($object);
+
+        $fixture->save();
+        
+        $result = $fixture->getResult();
+        $this->assertInstanceOf('TestTools\Tests\Fixture\NotSerializableException', $result);
+        $this->assertEquals("testmessage", $result->getMessage());
+        $this->assertEquals(42, $result->getCode());
+    }
 }
