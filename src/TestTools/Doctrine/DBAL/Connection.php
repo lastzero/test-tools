@@ -62,22 +62,22 @@ class Connection extends DoctrineDBALConnection
         return $this->callWithFixtures('fetchAll', func_get_args());
     }
 
-    public function fetchAssoc($statement, array $params = array())
+    public function fetchAssoc($statement, array $params = array(), array $types = array())
     {
         return $this->callWithFixtures('fetchAssoc', func_get_args());
     }
 
-    public function fetchArray($statement, array $params = array())
+    public function fetchArray($statement, array $params = array(), array $types = array())
     {
         return $this->callWithFixtures('fetchArray', func_get_args());
     }
 
-    public function fetchColumn($statement, array $params = array(), $colnum = 0)
+    public function fetchColumn($statement, array $params = array(), $colnum = 0, array $types = array())
     {
         return $this->callWithFixtures('fetchColumn', func_get_args());
     }
 
-    public function delete($tableName, array $identifier, array $types = array())
+    public function delete($tableName, array $identifier, array $types = array(), array $types = array())
     {
         return $this->callWithFixtures('delete', func_get_args());
     }
