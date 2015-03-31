@@ -36,7 +36,7 @@ class ConnectionTest extends UnitTestCase
         try {
             $this->db->fetchAll('SELECT * FROM example');
             $this->fail('OfflineException was not thrown');
-        } catch(OfflineException $e) {
+        } catch (OfflineException $e) {
             // OK
         }
 
@@ -156,5 +156,11 @@ class ConnectionTest extends UnitTestCase
     {
         $this->db->beginTransaction();
         $this->db->rollBack();
+    }
+
+    public function testGetDatabasePlatform()
+    {
+        $result = $this->db->getDatabasePlatform();
+        $this->assertInstanceOf('\Doctrine\DBAL\Platforms\MySqlPlatform', $result);
     }
 }
