@@ -151,6 +151,11 @@ class Connection extends DoctrineDBALConnection
         }
     }
 
+    public function getDatabasePlatform()
+    {
+        return $this->callWithFixtures('getDatabasePlatform', func_get_args());
+    }
+
     /**
      * This is a bit of a hack, since static fixtures will always return the same ID. Make sure to write
      * your tests accordingly:
