@@ -20,7 +20,7 @@ class Request extends GuzzleRequest
             $body = $this->body;
         }
 
-        $fingerprint = sha1(serialize(array($body, $this->getUrl(), $this->getMethod(), $this->getQuery(true))));
+        $fingerprint = sha1(serialize((string)$this));
         return $this->callWithFixtures('send', array($fingerprint));
     }
 }
