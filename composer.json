@@ -26,7 +26,8 @@
         "doctrine/dbal": "~2.5",
         "guzzle/guzzle": "~3.9.2",
         "kriswallsmith/buzz": ">=0.10",
-        "phpunit/phpunit": "@stable"
+        "phpunit/phpunit": "@stable",
+        "sstalle/php7cc": "*"
     },
     "autoload": {
         "psr-0": { "TestTools": "src/" }
