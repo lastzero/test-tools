@@ -60,7 +60,7 @@ There's an awesome explanation why mocks are evil by Stanislav Bashkyrtsev (http
 
 Mocks are required to be able to test sometimes, but since mocking can be a costly endeavour, you should try to avoid their widespread usage and prefer component tests instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests.
 
-In theory, true unit tests can be more precise when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, component tests will provide you with a stack trace that points you to the right line of code. In the worst case, more than one test case fails, if just one class or function is broken. Of course, you should still create test cases for all your classes.
+In theory, true unit tests can be a bit more precise when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, component tests will also provide you with a stack trace that points you to the right line of code. In the worst case, more than one test case fails, if just one class or function is broken – that will give you even more information about the issue.
 
 Even code that depends on databases or Web services, can be easily tested using self-initializing fixtures instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use functional tests instead.
 
