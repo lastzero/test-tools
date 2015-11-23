@@ -49,6 +49,21 @@ http://symfony.com/doc/current/components/dependency_injection/introduction.html
 
 Since global state must be avoided while performing tests, the service instances are not cached between tests. The service definitions in the container are reused however. This significantly improves test performance compared to a full container reinitialization before each test (about 5 to 10 times faster).
 
+Unit Tests vs Component Tests
+-----------------------------
+
+Some developers might criticise that the resulting tests are just component tests and not true unit tests. Simply put, component tests are like unit tests except that you don't mock class dependencies by default but use real objects (ideally via dependency injection). Mocking is creating objects that simulate the behaviour of real objects.
+
+There's an awesome explanation why mocks are evil by Stanislav Bashkyrtsev (http://qala.io/blog/test-pyramid.html):
+
+"Mocks interact with the internal logic of your classes and therefore will change every time that logic changes. Also, we often find ourselves in situations when we mock a lot and therefore we mostly test how we initialize our mocks rather than how our business logic works. So mocks are evil, but sometimes are necessary. Component Tests will free us from unnecessary mocking."
+
+Mocks are required to be able to test sometimes, but since mocking can be a costly endeavour, you should try to avoid their widespread usage and prefer component tests instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests.
+
+In theory, true unit tests can be a bit more precise when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, component tests will also provide you with a stack trace that points you to the right line of code. In the worst case, more than one test case fails, if just one class or function is broken – that will give you even more information about the issue.
+
+Even code that depends on databases or Web services, can be easily tested using self-initializing fixtures instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use functional tests instead.
+
 Self-initializing Fixtures
 --------------------------
 The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
@@ -145,3 +160,5 @@ If you are using composer, just add "lastzero/test-tools" to your composer.json 
     "require-dev": {
         "lastzero/test-tools": "*"
     }
+
+

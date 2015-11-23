@@ -77,7 +77,7 @@ class Connection extends DoctrineDBALConnection
         return $this->callWithFixtures('fetchColumn', func_get_args());
     }
 
-    public function delete($tableName, array $identifier, array $types = array(), array $types = array())
+    public function delete($tableName, array $identifier, array $types = array())
     {
         return $this->callWithFixtures('delete', func_get_args());
     }
