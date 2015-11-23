@@ -71,11 +71,15 @@ trait FixturePathTrait
         if ($this->testBasePath == '') {
             $testDirectory = $this->getTestDirectory();
 
-            $basePath = substr(
-                $testDirectory,
-                0,
-                strripos($testDirectory, $this->testsDirectory) + strlen($this->testsDirectory)
-            );
+            if (strtolower(basename($testDirectory)) == 'tests') {
+                $basePath = $testDirectory . '/';
+            } else {
+                $basePath = substr(
+                    $testDirectory,
+                    0,
+                    strripos($testDirectory, $this->testsDirectory) + strlen($this->testsDirectory)
+                );
+            }
 
             $this->setTestBasePath($basePath);
         }
