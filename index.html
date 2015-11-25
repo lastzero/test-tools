@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>TestTools for PHPUnit by lastzero</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">TestTools for PHPUnit</h1>
+      <h2 class="project-tagline">Easy dependency injection and self-initializing fixtures</h2>
+      <a href="https://github.com/lastzero/test-tools" class="btn">View on GitHub</a>
+      <a href="https://github.com/lastzero/test-tools/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/lastzero/test-tools/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p><strong>The goal of this project is to increase testing productivity by leveraging the power of dependency injection and self-initializing fixtures for PHPUnit tests.</strong></p>
+
+<p>The tools contain two parts: An integrated DI container for <strong>easy dependency injection</strong> using YAML config files (instead of mocking every single class dependency or doing the dependency injection manually) and <strong>self-initializing fixtures</strong> to replace storage backends such as SQL databases or REST services with record and playback fixtures. </p>
+
+<p>Here’s an example of a test case built with TestTools – note the <strong>setUp()</strong> method, which get’s the ready-to-use object from the dependency injection container:</p>
+
+<pre><code>use TestTools\TestCase\UnitTestCase;
+
+class FooTest extends UnitTestCase
+{
+    protected $foo;
+
+    public function setUp()
+    {
+        $this-&gt;foo = $this-&gt;get('foo');
+    }
+
+    public function testBar()
+    {
+        $result = $this-&gt;foo-&gt;bar('Pi', 2);
+        $this-&gt;assertEquals(3.14, $result);
+    }
+}
+</code></pre>
+
+<p>You’ll get <strong>fresh instances</strong> in every test, so there is <strong>no global state</strong> that could harm our tests. From that point of view, they run in isolation. The compiled service definitions in the container are reused however for performance reasons.</p>
+
+<p>This approach let’s you create tests <strong>much faster</strong>, you’ll get a <strong>higher code coverage</strong> and need to invest <strong>less effort in maintenance</strong>. </p>
+
+<p>To define services, simply create a <code>config.yml</code> (optionally <code>config.local.yml</code> for local modifications) in your base test directory.</p>
+
+<p>TestTools can be used to test any application, framework or library, just like PHPUnit_Framework_TestCase. It is not limited to the Symfony ecosystem. The Symfony Components DI container was chosen, because of it's easy to understand container configuration in YAML.</p>
+
+<h2>
+<a id="self-initializing-fixtures" class="anchor" href="#self-initializing-fixtures" aria-hidden="true"><span class="octicon octicon-link"></span></a>Self-initializing Fixtures</h2>
+
+<p>The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
+types of external data stores (databases) and services (SOAP/REST): <a href="http://martinfowler.com/bliki/SelfInitializingFake.html">http://martinfowler.com/bliki/SelfInitializingFake.html</a></p>
+
+<p>To cover some of the most common use cases, <strong>Doctrine DBAL</strong> (SQL), <strong>Guzzle</strong> and <strong>Buzz</strong> (HTTP) are supported out of the box.</p>
+
+<p><code>TestTools\Fixture\SelfInitializingFixtureTrait</code> enables existing classes to work with file based fixtures (record and playback):</p>
+
+<pre><code>use TestTools\Fixture\SelfInitializingFixtureTrait;
+
+class Foo extends SomeBaseClass
+{
+    use SelfInitializingFixtureTrait;
+
+    public function bar($name, $type, array $baz = array())
+    {
+        return $this-&gt;callWithFixtures('bar', func_get_args());
+    }
+}
+</code></pre>
+
+<h2>
+<a id="unit-tests-vs-component-tests" class="anchor" href="#unit-tests-vs-component-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unit Tests vs Component Tests</h2>
+
+<p>Some developers might criticise that the resulting tests are just component tests and not true unit tests. Simply put, component tests are like unit tests except that you don't mock class dependencies by default but use real objects (ideally via dependency injection). Mocking is creating objects that simulate the behaviour of real objects.</p>
+
+<p>There's an awesome explanation why mocks are evil by Stanislav Bashkyrtsev (<a href="http://qala.io/blog/test-pyramid.html">http://qala.io/blog/test-pyramid.html</a>):</p>
+
+<p>"Mocks interact with the internal logic of your classes and therefore will change every time that logic changes. Also, we often find ourselves in situations when we mock a lot and therefore we mostly test how we initialize our mocks rather than how our business logic works. So mocks are evil, but sometimes are necessary. Component Tests will free us from unnecessary mocking."</p>
+
+<p>Mocks are required to be able to test sometimes, but since mocking can be a costly endeavour, you should try to avoid their widespread usage and prefer component tests instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests.</p>
+
+<p>In theory, true unit tests can be a bit more precise when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, component tests will also provide you with a stack trace that points you to the right line of code. In the worst case, more than one test case fails, if just one class or function is broken – that will give you even more information about the issue.</p>
+
+<p>Even code that depends on databases or Web services, can be easily tested using self-initializing fixtures instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use functional tests instead.</p>
+
+<h2>
+<a id="composer" class="anchor" href="#composer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Composer</h2>
+
+<p>If you are using composer, just add "lastzero/test-tools" to your composer.json file:</p>
+
+<pre><code>"require-dev": {
+    "lastzero/test-tools": "*"
+}
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/lastzero/test-tools">TestTools for PHPUnit</a> is maintained by <a href="https://github.com/lastzero">lastzero</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
