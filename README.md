@@ -45,9 +45,11 @@ The YAML file must contain the sections "parameters" and "services". If you're n
 
 http://symfony.com/doc/current/components/dependency_injection/introduction.html
 
+The Symfony Components DI container was chosen, because of it's easy to understand container configuration in YAML.
+
 Since global state must be avoided while performing tests, the service instances are not cached between tests. The service definitions in the container are reused however. This significantly improves test performance compared to a full container reinitialization before each test (about 5 to 10 times faster).
 
-*Note: TestTools can be used to test any application, framework or library, just like PHPUnit_Framework_TestCase. It is not limited to the Symfony ecosystem. The Symfony Components DI container was chosen, because of it's easy to understand container configuration in YAML.*
+TestTools can be used to test **any application**, framework or library, just like `PHPUnit_Framework_TestCase`.
 
 Unit Tests vs Component Tests
 -----------------------------
@@ -155,7 +157,7 @@ Configuration details (e.g. login credentials) must be valid for development env
 Composer
 --------
 
-If you are using composer, simply add "lastzero/test-tools" to your composer.json file to use this library:
+If you are using composer, simply add "lastzero/test-tools" to your composer.json file and run `composer update`:
 
     "require-dev": {
         "lastzero/test-tools": "*"
