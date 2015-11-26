@@ -155,7 +155,7 @@ Configuration details (e.g. login credentials) must be valid for development env
 Composer
 --------
 
-If you are using composer, just add "lastzero/test-tools" to your composer.json file:
+If you are using composer, simply add "lastzero/test-tools" to your composer.json file to use this library:
 
     "require-dev": {
         "lastzero/test-tools": "*"
