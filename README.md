@@ -17,7 +17,7 @@ Test Tools for PHPUnit
 Dependency Injection
 --------------------
 
-`TestTools\TestCase\UnitTestCase` contains an integrated Symfony2 DI container for more productive testing:
+Here’s an example of a test case built with `TestTools\TestCase\UnitTestCase` – note the **setUp()** method, which get’s the ready-to-use object from the dependency injection container:
 
     use TestTools\TestCase\UnitTestCase;
 
@@ -37,8 +37,6 @@ Dependency Injection
         }
     }
 
-*Note: UnitTestCase can be used to test any application, framework or library, just like PHPUnit_Framework_TestCase. It is not limited to the Symfony2 ecosystem. The Symfony2 DI container was primarily chosen, because of it's easy to understand container configuration in YAML.*
-
 To define services, simply create a `config.yml` (optionally `config.local.yml` for local modifications) in your base test directory, for example
 
     Bundle/Example/Tests/config.yml
@@ -48,6 +46,8 @@ The YAML file must contain the sections "parameters" and "services". If you're n
 http://symfony.com/doc/current/components/dependency_injection/introduction.html
 
 Since global state must be avoided while performing tests, the service instances are not cached between tests. The service definitions in the container are reused however. This significantly improves test performance compared to a full container reinitialization before each test (about 5 to 10 times faster).
+
+*Note: TestTools can be used to test any application, framework or library, just like PHPUnit_Framework_TestCase. It is not limited to the Symfony ecosystem. The Symfony Components DI container was chosen, because of it's easy to understand container configuration in YAML.*
 
 Unit Tests vs Component Tests
 -----------------------------
