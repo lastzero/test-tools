@@ -47,10 +47,11 @@ class ConnectionTest extends UnitTestCase
     public function testFetchAll()
     {
         $expected = array(
-            array('id' => 1, 'name' => 'Foo', 'email' => 'foo@example.com'),
-            array('id' => 2, 'name' => 'Bar', 'email' => 'bar@example.com'),
-            array('id' => 4, 'name' => 'Baz', 'email' => 'baz@example.com'),
-            array('id' => 5, 'name' => 'New', 'email' => 'new@example.com')
+            array('id' => 1, 'username' => 'Foo', 'email' => 'foo@bar.com'),
+            array('id' => 2, 'username' => 'Michael', 'email' => 'michael@bar.com'),
+            array('id' => 3, 'username' => 'Alex', 'email' => 'alex@foo.com'),
+            array('id' => 4, 'username' => 'Bender', 'email' => 'bender@ilovebender.com'),
+            array('id' => 5, 'username' => 'Bill', 'email' => 'bill@bar.com')
         );
 
         $result = $this->db->fetchAll('SELECT * FROM users');
@@ -60,7 +61,7 @@ class ConnectionTest extends UnitTestCase
 
     public function testFetchAssoc()
     {
-        $expected = array('id' => 2, 'name' => 'Bar', 'email' => 'bar@example.com');
+        $expected = array('id' => 2, 'username' => 'Michael', 'email' => 'michael@bar.com');
 
         $result = $this->db->fetchAssoc('SELECT * FROM users WHERE id = 2');
 
@@ -69,7 +70,7 @@ class ConnectionTest extends UnitTestCase
 
     public function testFetchArray()
     {
-        $expected = array(2, 'Bar', 'bar@example.com');
+        $expected = array(2, 'Michael', 'michael@bar.com');
 
         $result = $this->db->fetchArray('SELECT * FROM users WHERE id = 2');
 
@@ -78,9 +79,9 @@ class ConnectionTest extends UnitTestCase
 
     public function testFetchColumn()
     {
-        $expected = 'Bar';
+        $expected = 'Michael';
 
-        $result = $this->db->fetchColumn('SELECT name FROM users WHERE id = 2');
+        $result = $this->db->fetchColumn('SELECT username FROM users WHERE id = 2');
 
         $this->assertEquals($expected, $result);
     }
@@ -89,7 +90,7 @@ class ConnectionTest extends UnitTestCase
     {
         $expected = 1;
 
-        $row = array('name' => 'Baz', 'email' => 'baz@example.com');
+        $row = array('username' => 'Jens', 'email' => 'jens@testtools.com');
 
         $result = $this->db->insert('users', $row);
 
@@ -101,7 +102,7 @@ class ConnectionTest extends UnitTestCase
      */
     public function testInsertException()
     {
-        $row = array('name' => 'Baz', 'foo' => 'bar', 'email' => 'baz@example.com');
+        $row = array('username' => 'Baz', 'foo' => 'bar', 'email' => 'baz@example.com');
 
         $this->db->insert('users', $row);
     }
@@ -111,9 +112,9 @@ class ConnectionTest extends UnitTestCase
      */
     public function testLastInsertId()
     {
-        $expected = 5;
+        $expected = 7;
 
-        $row = array('name' => 'New', 'email' => 'new@example.com');
+        $row = array('username' => 'New', 'email' => 'new@example.com');
 
         $this->db->insert('users', $row);
 
@@ -129,7 +130,7 @@ class ConnectionTest extends UnitTestCase
     {
         $expected = 1;
 
-        $result = $this->db->update('users', array('name' => 'Changed'), array('id' => 3));
+        $result = $this->db->update('users', array('username' => 'Changed'), array('id' => 3));
 
         $this->assertEquals($expected, $result);
     }

@@ -1,1 +1,1 @@
-a:2:{s:6:"result";a:3:{s:2:"id";s:1:"2";s:4:"name";s:3:"Bar";s:5:"email";s:15:"bar@example.com";}s:4:"args";a:1:{i:0;s:32:"SELECT * FROM users WHERE id = 2";}}
+a:2:{s:6:"result";a:3:{s:2:"id";i:2;s:8:"username";s:7:"Michael";s:5:"email";s:15:"michael@bar.com";}s:4:"args";a:1:{i:0;s:32:"SELECT * FROM users WHERE id = 2";}}
