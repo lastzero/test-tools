@@ -24,7 +24,7 @@ use TestTools\Fixture\Exception\OfflineException;
  *
  * To avoid conflicts, all properties and methods either contain "fixture" in their name and/or are prefixed with "_"
  *
- * @author Michael Mayer <michael@liquidbytes.net>
+ * @author Michael Mayer <michael@lastzero.net>
  * @package TestTools
  * @license MIT
  */

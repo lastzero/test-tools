@@ -18,7 +18,7 @@ use TestTools\Fixture\Exception\FixtureInvalidDirectoryException;
  * 
  *   http://martinfowler.com/bliki/SelfInitializingFake.html
  *
- * @author Michael Mayer <michael@liquidbytes.net>
+ * @author Michael Mayer <michael@lastzero.net>
  * @package TestTools
  * @license MIT
  */

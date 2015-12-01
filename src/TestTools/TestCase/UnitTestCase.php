@@ -38,7 +38,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  * 
  *   http://symfony.com/doc/current/components/dependency_injection/introduction.html
  *
- * @author Michael Mayer <michael@liquidbytes.net>
+ * @author Michael Mayer <michael@lastzero.net>
  * @package TestTools
  * @license MIT
  */

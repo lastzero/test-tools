@@ -6,7 +6,7 @@ use TestTools\Fixture\FileFixture;
 use TestTools\TestCase\UnitTestCase;
 
 /**
- * @author Michael Mayer <michael@liquidbytes.net>
+ * @author Michael Mayer <michael@lastzero.net>
  * @package TestTools
  * @license MIT
  */

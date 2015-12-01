@@ -5,7 +5,7 @@ namespace TestTools\Profiler;
 /**
  * Lightweight profiler featuring low performance overhead and runtime aggregation
  *
- * @author Michael Mayer <michael@liquidbytes.net>
+ * @author Michael Mayer <michael@lastzero.net>
  * @package TestTools
  * @license MIT
  */

@@ -6,7 +6,7 @@ use TestTools\Profiler\Profiler;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
- * @author Michael Mayer <michael@liquidbytes.net>
+ * @author Michael Mayer <michael@lastzero.net>
  * @package TestTools
  * @license MIT
  */

@@ -8,7 +8,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Console\Command\Command;
 
 /**
- * @author Michael Mayer <michael@liquidbytes.net>
+ * @author Michael Mayer <michael@lastzero.net>
  * @package TestTools
  * @license MIT
  */

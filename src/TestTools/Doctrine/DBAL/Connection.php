@@ -13,7 +13,7 @@ use Doctrine\DBAL\ConnectionException;
  * See wrapperClass option:
  * http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
  *
- * @author Michael Mayer <michael@liquidbytes.net>
+ * @author Michael Mayer <michael@lastzero.net>
  * @package TestTools
  * @license MIT
  */
