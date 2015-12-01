@@ -135,7 +135,7 @@ services:
         class: TestTools\Doctrine\DBAL\Connection
         arguments:
             - %dbal.params%
-            - @dbal.driver
+            - "@dbal.driver"
         calls:
             - [setFixturePrefix, ['sql']]
             - [useFixtures, ["%fixture.path%"]]
@@ -146,7 +146,7 @@ services:
     buzz.fixture:
         class: TestTools\Buzz\Client
         arguments:
-            - @buzz.client
+            - "@buzz.client"
         calls:
             - [useFixtures, ["%fixture.path%"]]
 ```
@@ -160,7 +160,7 @@ Composer
 If you are using composer, simply add "lastzero/test-tools" to your composer.json file and run `composer update`:
 
     "require-dev": {
-        "lastzero/test-tools": "*"
+        "lastzero/test-tools": "~2.0"
     }
 
-
+For PHP 5.4 compatibility, use version "~1.2".
