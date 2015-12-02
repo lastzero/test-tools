@@ -56,12 +56,12 @@ class WebTestCase extends SymfonyWebTestCase
     /**
      * Performs a HTTP request
      *
-     * @param string $method        The request method
-     * @param string $uri           The URI to fetch
-     * @param array $parameters    The Request parameters
-     * @param array $files         The files
-     * @param array $server        The server parameters (HTTP headers are referenced with a HTTP_ prefix as PHP does)
-     * @param string $content       The raw body data
+     * @param string $method The request method
+     * @param string $uri The URI to fetch
+     * @param array $parameters The Request parameters
+     * @param array $files The files
+     * @param array $server The server parameters (HTTP headers are referenced with a HTTP_ prefix as PHP does)
+     * @param string $content The raw body data
      * @param Boolean $changeHistory Whether to update the history or not (only used internally for back(), forward(), and reload())
      *
      * @return \Symfony\Component\HttpFoundation\Response A Response instance

@@ -11,7 +11,7 @@ class BlackBox
 
     public function setFixtureInstance($instance)
     {
-        if(empty($instance)) {
+        if (empty($instance)) {
             throw new FixtureException('Instance can not be empty');
         }
 

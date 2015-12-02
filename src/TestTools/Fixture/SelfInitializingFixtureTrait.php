@@ -61,10 +61,10 @@ trait SelfInitializingFixtureTrait
      */
     protected function getFixtureCaller($traceIndex = 6)
     {
-        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, $traceIndex  + 1);
+        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, $traceIndex + 1);
         $caller = $trace[$traceIndex];
 
-        if(isset($caller['class'])) {
+        if (isset($caller['class'])) {
             $result = @$caller['class'] . '->' . @$caller['function'] . '()';
         } else {
             $result = @$caller['function'] . '()';
@@ -80,7 +80,7 @@ trait SelfInitializingFixtureTrait
      */
     public function useFixtures($fixturePath)
     {
-        if($fixturePath) {
+        if ($fixturePath) {
             $this->_fixturePath = FileFixture::normalizePath($fixturePath);
         } else {
             $this->disableFixtures();
@@ -113,7 +113,7 @@ trait SelfInitializingFixtureTrait
      */
     public function setFixturePrefix($prefix)
     {
-        if(empty($prefix)) {
+        if (empty($prefix)) {
             throw new FixtureException('Fixture prefix can not be empty');
         }
 
@@ -165,7 +165,7 @@ trait SelfInitializingFixtureTrait
      */
     public function fixtureOfflineModeEnabled()
     {
-        return (bool) $this->_fixtureOfflineMode;
+        return (bool)$this->_fixtureOfflineMode;
     }
 
     /**
@@ -183,9 +183,9 @@ trait SelfInitializingFixtureTrait
             // Determine fixture file name
             $fingerprintArguments = array();
 
-            foreach($arguments as $arg) {
-                if(is_object($arg)) {
-                    $fingerprintArg = (string) $arg;
+            foreach ($arguments as $arg) {
+                if (is_object($arg)) {
+                    $fingerprintArg = (string)$arg;
                 } else {
                     $fingerprintArg = $arg;
                 }
@@ -202,19 +202,19 @@ trait SelfInitializingFixtureTrait
                 $result = $fixture->getResult();
 
                 // Throw exception or return value?
-                if(is_object($result) && $result instanceof \Exception) {
+                if (is_object($result) && $result instanceof \Exception) {
                     throw $result;
                 }
 
                 $resultArguments = $fixture->getArguments();
 
                 return $result;
-            } catch(FixtureNotFoundException $e) {
+            } catch (FixtureNotFoundException $e) {
                 // No fixture found, the original method has to be called
             }
         }
 
-        if($this->fixtureOfflineModeEnabled()) {
+        if ($this->fixtureOfflineModeEnabled()) {
             throw new OfflineException('Can not create fixture for ' . $functionName . '() in offline mode');
         }
 
@@ -223,7 +223,7 @@ trait SelfInitializingFixtureTrait
         // Catch exceptions to be able to create fixtures for them as well
         try {
             $result = call_user_func_array(array($this->_fixtureInstance, $functionName), $arguments);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $result = $e;
             $throwException = true;
         }
@@ -237,7 +237,7 @@ trait SelfInitializingFixtureTrait
         }
 
         // Throw exception or return value?
-        if($throwException) {
+        if ($throwException) {
             throw $result;
         }
 

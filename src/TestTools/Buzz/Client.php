@@ -6,7 +6,8 @@ use Buzz\Client\ClientInterface;
 use Buzz\Message\MessageInterface;
 use Buzz\Message\RequestInterface;
 
-class Client extends BlackBox implements ClientInterface {
+class Client extends BlackBox implements ClientInterface
+{
     public function __construct(ClientInterface $client)
     {
         $this->setFixturePrefix('buzz');

@@ -19,7 +19,7 @@ class CommandTestCase extends WebTestCase
         $application = new Application();
         $application->add($commandInstance);
 
-        if($commandInstance instanceof ContainerAwareCommand) {
+        if ($commandInstance instanceof ContainerAwareCommand) {
             $client = $this->getClient();
             $container = $client->getContainer();
             $commandInstance->setContainer($container);

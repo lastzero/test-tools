@@ -11,8 +11,8 @@ class NonSerializableExceptionContainer
     public function __construct(\Exception $e)
     {
         $this->className = get_class($e);
-        $this->message   = $e->getMessage();
-        $this->code      = $e->getCode();
+        $this->message = $e->getMessage();
+        $this->code = $e->getCode();
     }
 
     public function recreate()

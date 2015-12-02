@@ -9,13 +9,13 @@ use TestTools\Fixture\Exception\FixtureInvalidDirectoryException;
 
 /**
  * File fixture for general usage
- * 
+ *
  * Classes that properly support Dependency Injection can utilize the
  * injection of test adapters with fixture support to avoid the need for
  * modification of any production code.
  *
  * A good explaination on the topic was written by Martin Fowler:
- * 
+ *
  *   http://martinfowler.com/bliki/SelfInitializingFake.html
  *
  * @author Michael Mayer <michael@lastzero.net>
@@ -31,8 +31,8 @@ class FileFixture
     {
         $this->setFilename($filename);
     }
-    
-    public function setFilename($filename) 
+
+    public function setFilename($filename)
     {
         if (empty($filename)) {
             throw new FixtureEmptyFilenameException('Empty filename');
@@ -41,14 +41,15 @@ class FileFixture
         $this->filename = $filename;
     }
 
-    public function find() {
+    public function find()
+    {
         if (!file_exists($this->filename)) {
             throw new FixtureNotFoundException('File not found: ' . $this->filename);
         }
 
         $data = unserialize(file_get_contents($this->filename));
 
-        if(!array_key_exists('result', $data) || !array_key_exists('args', $data)) {
+        if (!array_key_exists('result', $data) || !array_key_exists('args', $data)) {
             throw new FixtureNotValidException('Data in fixture file is not valid');
         }
 
@@ -57,7 +58,8 @@ class FileFixture
         return $this;
     }
 
-    public function save() {
+    public function save()
+    {
         file_put_contents($this->filename, serialize($this->data));
         return $this;
     }
@@ -101,7 +103,7 @@ class FileFixture
 
     public function setArguments(array $arguments)
     {
-        foreach($arguments as &$argument) {
+        foreach ($arguments as &$argument) {
             try {
                 serialize($argument);
             } catch (\Exception $e) {

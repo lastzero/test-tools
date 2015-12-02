@@ -9,8 +9,10 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * @package TestTools
  * @license MIT
  */
-class TestContainerBuilder extends ContainerBuilder {
-    public function clearInstances() {
+class TestContainerBuilder extends ContainerBuilder
+{
+    public function clearInstances()
+    {
         $this->services = array();
     }
 

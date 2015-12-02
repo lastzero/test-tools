@@ -16,7 +16,7 @@ class Request extends GuzzleRequest
     {
         $body = '';
 
-        if(property_exists($this, 'body')) {
+        if (property_exists($this, 'body')) {
             $body = $this->body;
         }
 
