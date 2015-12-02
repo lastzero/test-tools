@@ -16,5 +16,6 @@ class TestContainerBuilder extends ContainerBuilder {
 
     public function __clone()
     {
+        $this->clearInstances();
     }
 }

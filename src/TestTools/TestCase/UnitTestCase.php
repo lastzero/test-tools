@@ -66,8 +66,6 @@ abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
             $this->setContainer(clone self::$containers[$this->getTestBasePath()]);
             
             $this->configureContainer();
-            
-            $this->container->clearInstances();
         } elseif(!$this->container) {
             // Create new container
             $this->setContainer(new TestContainerBuilder());
