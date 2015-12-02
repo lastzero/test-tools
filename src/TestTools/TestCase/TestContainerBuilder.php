@@ -11,13 +11,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class TestContainerBuilder extends ContainerBuilder
 {
-    public function clearInstances()
-    {
-        $this->services = array();
-    }
-
     public function __clone()
     {
-        $this->clearInstances();
+        $this->reset();
     }
 }
