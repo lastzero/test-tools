@@ -54,17 +54,28 @@ TestTools can be used to test **any application**, framework or library, just li
 Unit Tests vs Component Tests
 -----------------------------
 
-Some developers might criticise that the resulting tests are just component tests and not true unit tests. Simply put, component tests are like unit tests except that you don't mock class dependencies by default but use real objects (ideally via dependency injection). Mocking is creating objects that simulate the behaviour of real objects.
+Some developers might criticise that the resulting tests are just component tests and not true unit tests. Simply put, component tests are like unit tests except that you don't mock class dependencies by default but use real objects (ideally via dependency injection). Mocking is creating objects that simulate the behaviour of real objects. Martin Fowler refers to this as the **classic and mockist styles of unit testing** instead of making a difference between true unit tests and component tests (http://martinfowler.com/articles/mocksArentStubs.html):
 
-There's an awesome explanation why mocks are evil by Stanislav Bashkyrtsev (http://qala.io/blog/test-pyramid.html):
+"The **classical TDD style** is to use **real objects** if possible and a double if it's awkward to use the real thing. So a classical TDDer would use a real warehouse and a double for the mail service. The kind of double doesn't really matter that much.
 
-"Mocks interact with the internal logic of your classes and therefore will change every time that logic changes. Also, we often find ourselves in situations when we mock a lot and therefore we mostly test how we initialize our mocks rather than how our business logic works. So mocks are evil, but sometimes are necessary. Component Tests will free us from unnecessary mocking."
+A **mockist TDD** practitioner, however, will always use a mock for any object with interesting behavior. In this case for both the warehouse and the mail service.
 
-Mocks are required to be able to test sometimes, but since mocking can be a costly endeavour, you should try to avoid their widespread usage and prefer component tests instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests.
+Although the various mock frameworks were designed with mockist testing in mind, many classicists find them useful for creating doubles."
 
-In theory, true unit tests can be a bit more precise when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, component tests will also provide you with a stack trace that points you to the right line of code. In the worst case, more than one test case fails, if just one class or function is broken – that will give you even more information about the issue.
+Mocks are required to be able to test sometimes, but since mocking can be a costly endeavour, you should try to avoid their widespread usage and prefer component tests instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.
+
+In theory, true unit tests can be a bit more precise when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, component tests will also provide you with a stack trace that points you to the right line of code (http://martinfowler.com/bliki/UnitTest.html):
+
+"We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. So we felt isolation wasn't an issue in practice."
+
+In the worst case, more than one test case fails, if just one class or function is broken – will give you even more information about the issue and allows to find and fix affected code easily.
 
 Even code that depends on databases or Web services, can be easily tested using self-initializing fixtures instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use functional tests instead.
+
+See also:
+* http://martinfowler.com/bliki/ComponentTest.html
+* http://martinfowler.com/bliki/TestPyramid.html
+* http://martinfowler.com/bliki/TestDouble.html
 
 Self-initializing Fixtures
 --------------------------
