@@ -50,7 +50,7 @@ class FooTest extends UnitTestCase
 
 <p>To define services, simply create a <code>config.yml</code> (optionally <code>config.local.yml</code> for local modifications) in your base test directory.</p>
 
-<p>TestTools can be used to test <strong>any application</strong>, framework or library, just like <code>PHPUnit_Framework_TestCase</code>.</p>
+<p>TestTools can be used to test any application, framework or library, just like PHPUnit_Framework_TestCase. It is not limited to the Symfony ecosystem. The Symfony Components DI container was chosen, because of it's easy to understand container configuration in YAML.</p>
 
 <h2>
 <a id="self-initializing-fixtures" class="anchor" href="#self-initializing-fixtures" aria-hidden="true"><span class="octicon octicon-link"></span></a>Self-initializing Fixtures</h2>
@@ -76,19 +76,23 @@ class Foo extends SomeBaseClass
 </code></pre>
 
 <h2>
-<a id="unit-tests-vs-component-tests" class="anchor" href="#unit-tests-vs-component-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unit Tests vs Component Tests</h2>
+<a id="classic-vs-mockist-style-of-unit-testing" class="anchor" href="#classic-vs-mockist-style-of-unit-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Classic vs mockist style of unit testing</h2>
 
-<p>Some developers might criticise that the resulting tests are just <strong>component tests</strong> and not true <strong>unit tests</strong>. Simply put, component tests are like unit tests except that you don't mock class dependencies by default but use real objects (ideally via dependency injection). Mocking is creating objects that simulate the behaviour of real objects.</p>
+<p>These tools <strong>simplify using real objects and test doubles via dependency injection</strong>, so some developers might criticise that the resulting tests are not <em>true</em> unit tests as <strong>class dependencies are not mocked by default</strong>. Mocking is creating objects that simulate the behaviour of real objects. Martin Fowler refers to this as the <strong>classic and mockist styles of unit testing</strong>:</p>
 
-<p>There's an awesome explanation why mocks are evil by Stanislav Bashkyrtsev (<a href="http://qala.io/blog/test-pyramid.html">http://qala.io/blog/test-pyramid.html</a>):</p>
+<p>"The <strong>classical TDD style</strong> is to use <strong>real objects</strong> if possible and a double if it's awkward to use the real thing. So a classical TDDer would use a real warehouse and a double for the mail service. The kind of double doesn't really matter that much.</p>
 
-<p>"Mocks interact with the internal logic of your classes and therefore will change every time that logic changes. Also, we often find ourselves in situations when we mock a lot and therefore we mostly test how we initialize our mocks rather than how our business logic works. So mocks are evil, but sometimes are necessary. Component Tests will free us from unnecessary mocking."</p>
+<p>A <strong>mockist TDD</strong> practitioner, however, will always use a mock for any object with interesting behavior. In this case for both the warehouse and the mail service." -- <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler</a></p>
 
-<p>Mocks are required to be able to test sometimes, but since mocking can be a costly endeavour, you should try to avoid their widespread usage and prefer component tests instead. They do no harm - quite the contrary: You can instantly see, how the <strong>real objects interact with each other</strong> instead of waiting for functional tests.</p>
+<p><a href="http://martinfowler.com/bliki/TestDouble.html">Mocks and test doubles</a> are required to be able to test sometimes, but since <strong>mocking can be a time-consuming endeavour</strong>, you should try to avoid their widespread usage and prefer using real objects instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.</p>
 
-<p>In theory, true unit tests can be a bit more precise when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, component tests will also provide you with a <strong>stack trace</strong> that points you to the right line of code. In the worst case, more than one test case fails, if just one class or function is broken – that will give you even more information about the issue.</p>
+<p>In theory, the mockist style can be a bit <strong>more precise</strong> when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, <strong>classic unit tests will also provide you with a stack trace</strong> that points you to the right line of code:</p>
 
-<p>Even code that depends on databases or Web services, can be easily tested using self-initializing fixtures instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use functional tests instead.</p>
+<p>"We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. <strong>So we felt isolation wasn't an issue in practice</strong>." -- <a href="http://martinfowler.com/bliki/UnitTest.html">Martin Fowler</a></p>
+
+<p>In the worst case, more than one test case fails, if just one class or function is broken – will give you even more information about the issue and allows to find and fix affected code easily.</p>
+
+<p>Even code that depends on databases or Web services, can be easily tested using <strong>self-initializing fixtures</strong> instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use <strong>functional tests</strong> of the user interface or API instead: <a href="http://martinfowler.com/bliki/TestPyramid.html">http://martinfowler.com/bliki/TestPyramid.html</a></p>
 
 <h2>
 <a id="composer" class="anchor" href="#composer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Composer</h2>
@@ -96,9 +100,11 @@ class Foo extends SomeBaseClass
 <p>If you are using composer, simply add "lastzero/test-tools" to your composer.json file and run <code>composer update</code>:</p>
 
 <pre><code>"require-dev": {
-    "lastzero/test-tools": "*"
+    "lastzero/test-tools": "~2.0"
 }
 </code></pre>
+
+<p>For PHP 5.4 compatibility, use version "~1.2".</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/lastzero/test-tools">TestTools for PHPUnit</a> is maintained by <a href="https://github.com/lastzero">lastzero</a>.</span>
