@@ -45,8 +45,20 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
 {
     use FixturePathTrait;
+
+    /**
+     * @var array
+     */
     private static $containers = array();
+
+    /**
+     * @var TestContainerBuilder
+     */
     private $container;
+
+    /**
+     * @var YamlFileLoader
+     */
     private $loader;
 
     protected function setContainer(TestContainerBuilder $container)
