@@ -73,7 +73,7 @@ Even code that depends on databases or Web services, can be easily tested using 
 Self-initializing Fixtures
 --------------------------
 
-The basic concept of self-initializing fixtures is described by [Martin Fowler](http://martinfowler.com/bliki/SelfInitializingFake.html) and can be applied to all types of external data stores (databases) and services (SOAP/REST):
+The [concept of self-initializing fixtures](http://martinfowler.com/bliki/SelfInitializingFake.html) can be applied to all types of external data stores (databases) and services (SOAP/REST).
 
 `TestTools\Fixture\SelfInitializingFixtureTrait` enables existing classes to work with file based fixtures (record and playback):
 
