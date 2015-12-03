@@ -68,15 +68,13 @@ In theory, the mockist style can be a bit **more precise** when it comes to find
 
 In the worst case, more than one test case fails, if just one class or function is broken – will give you even more information about the issue and allows to find and fix affected code easily.
 
-Even code that depends on databases or Web services, can be easily tested using **self-initializing fixtures** instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use **functional tests** of the user interface or API instead: http://martinfowler.com/bliki/TestPyramid.html
+Even code that depends on databases or Web services, can be easily tested using **self-initializing fixtures** instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use [functional tests** of the user interface or API](http://martinfowler.com/bliki/TestPyramid.html) instead.
 
 Self-initializing Fixtures
 --------------------------
-The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
-types of external data stores (databases) and services (SOAP/REST):
 
-http://martinfowler.com/bliki/SelfInitializingFake.html 
- 
+The basic concept of self-initializing fixtures is described by [Martin Fowler](http://martinfowler.com/bliki/SelfInitializingFake.html) and can be applied to all types of external data stores (databases) and services (SOAP/REST):
+
 `TestTools\Fixture\SelfInitializingFixtureTrait` enables existing classes to work with file based fixtures (record and playback):
 
     use TestTools\Fixture\SelfInitializingFixtureTrait;
