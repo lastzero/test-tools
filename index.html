@@ -55,8 +55,7 @@ class FooTest extends UnitTestCase
 <h2>
 <a id="self-initializing-fixtures" class="anchor" href="#self-initializing-fixtures" aria-hidden="true"><span class="octicon octicon-link"></span></a>Self-initializing Fixtures</h2>
 
-<p>The basic concept of self initializing fixtures is described by Martin Fowler and can be applied to all
-types of external data stores (databases) and services (SOAP/REST): <a href="http://martinfowler.com/bliki/SelfInitializingFake.html">http://martinfowler.com/bliki/SelfInitializingFake.html</a></p>
+<p>The basic concept of self-initializing fixtures is described by <a href="http://martinfowler.com/bliki/SelfInitializingFake.html">Martin Fowler</a> and can be applied to all types of external data stores (databases) and services (SOAP/REST).</p>
 
 <p>To cover some of the most common use cases, <strong>Doctrine DBAL</strong> (SQL), <strong>Guzzle</strong> and <strong>Buzz</strong> (HTTP) are supported out of the box.</p>
 
@@ -92,7 +91,7 @@ class Foo extends SomeBaseClass
 
 <p>In the worst case, more than one test case fails, if just one class or function is broken – will give you even more information about the issue and allows to find and fix affected code easily.</p>
 
-<p>Even code that depends on databases or Web services, can be easily tested using <strong>self-initializing fixtures</strong> instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use <strong>functional tests</strong> of the user interface or API instead: <a href="http://martinfowler.com/bliki/TestPyramid.html">http://martinfowler.com/bliki/TestPyramid.html</a></p>
+<p>Even code that depends on databases or Web services, can be easily tested using <strong>self-initializing fixtures</strong> instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use <a href="http://martinfowler.com/bliki/TestPyramid.html">functional tests of the user interface or API</a> instead.</p>
 
 <h2>
 <a id="composer" class="anchor" href="#composer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Composer</h2>
