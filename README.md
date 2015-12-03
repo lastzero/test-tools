@@ -54,7 +54,7 @@ TestTools can be used to test **any application**, framework or library, just li
 Classic vs mockist style of unit testing
 ----------------------------------------
 
-Some developers might criticise that the resulting tests are not true unit tests because class dependencies are not mocked by default, but you're encouraged to use real objects via dependency injection. Mocking is creating objects that **simulate the behaviour of real objects**. Martin Fowler refers to this as the **classic and mockist styles of unit testing**:
+Some developers might criticise that the resulting tests are not true unit tests because class dependencies are not mocked by default - instead *Test Tools for PHPUnit* simplify using real objects via dependency injection. Mocking is creating objects that **simulate the behaviour of real objects**. Martin Fowler refers to this as the **classic and mockist styles of unit testing**:
 
 "The **classical TDD style** is to use **real objects** if possible and a double if it's awkward to use the real thing. So a classical TDDer would use a real warehouse and a double for the mail service. The kind of double doesn't really matter that much.
 
