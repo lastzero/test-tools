@@ -89,7 +89,7 @@ class Foo extends SomeBaseClass
 
 <p>"We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. <strong>So we felt isolation wasn't an issue in practice</strong>." -- <a href="http://martinfowler.com/bliki/UnitTest.html">Martin Fowler</a></p>
 
-<p>In the worst case, more than one test case fails, if just one class or function is broken – will give you even more information about the issue and allows to find and fix affected code easily.</p>
+<p>In the worst case, more than one test case fails, if just one class or function is broken – this will give you even more information about the issue and allows to find and fix affected code easily.</p>
 
 <p>Even code that depends on databases or Web services, can be easily tested using <strong>self-initializing fixtures</strong> instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use <a href="http://martinfowler.com/bliki/TestPyramid.html">functional tests of the user interface or API</a> instead.</p>
 
