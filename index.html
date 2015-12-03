@@ -55,7 +55,7 @@ class FooTest extends UnitTestCase
 <h2>
 <a id="self-initializing-fixtures" class="anchor" href="#self-initializing-fixtures" aria-hidden="true"><span class="octicon octicon-link"></span></a>Self-initializing Fixtures</h2>
 
-<p>The concept of <a href="http://martinfowler.com/bliki/SelfInitializingFake.html">self-initializing fixtures</a> can be applied to all types of external data stores (databases) and services (SOAP/REST).</p>
+<p>The concept of <a href="http://martinfowler.com/bliki/SelfInitializingFake.html">self-initializing fakes</a> as test doubles can be applied to all types of external data stores (databases) and services like SOAP or REST APIs.</p>
 
 <p>To cover some of the most common use cases, <strong>Doctrine DBAL</strong> (SQL), <strong>Guzzle</strong> and <strong>Buzz</strong> (HTTP) are supported out of the box.</p>
 
@@ -83,7 +83,7 @@ class Foo extends SomeBaseClass
 
 <p>A <strong>mockist TDD</strong> practitioner, however, will always use a mock for any object with interesting behavior. In this case for both the warehouse and the mail service." -- <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler</a></p>
 
-<p><a href="http://martinfowler.com/bliki/TestDouble.html">Mocks and test doubles</a> are required to be able to test sometimes, but since <strong>mocking can be a time-consuming endeavour</strong>, you should try to avoid their widespread usage and prefer using real objects instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.</p>
+<p><a href="http://martinfowler.com/bliki/TestDouble.html">Mocks and test doubles</a> are required to be able to test sometimes, but since <strong>creating and maintaining mocks can be a time-consuming endeavour</strong>, it makes sense to avoid their widespread usage and prefer using real objects instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.</p>
 
 <p>In theory, the mockist style can be a bit <strong>more precise</strong> when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, <strong>classic unit tests will also provide you with a stack trace</strong> that points you to the right line of code:</p>
 
