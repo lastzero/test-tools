@@ -70,12 +70,12 @@ In the worst case, more than one test case fails, if just one class or function 
 
 Even code that depends on databases or Web services, can be easily tested using **self-initializing fixtures** instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use [functional tests of the user interface or API](http://martinfowler.com/bliki/TestPyramid.html) instead.
 
-Self-initializing Fixtures
+Self-initializing fixtures
 --------------------------
 
-The concept of [self-initializing fixtures](http://martinfowler.com/bliki/SelfInitializingFake.html) as test doubles can be applied to all types of external data stores (databases) and services like SOAP or REST APIs.
+The concept of [self-initializing fakes](http://martinfowler.com/bliki/SelfInitializingFake.html) as test doubles can be applied to all types of external data stores (databases) and services like SOAP or REST APIs.
 
-`TestTools\Fixture\SelfInitializingFixtureTrait` enables existing classes to work with file based fixtures (record and playback):
+`SelfInitializingFixtureTrait` enables existing classes to work with file based fixtures (record and playback):
 
     use TestTools\Fixture\SelfInitializingFixtureTrait;
 
