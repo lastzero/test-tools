@@ -51,22 +51,20 @@ Since global state must be avoided while performing tests, the service instances
 
 TestTools can be used to test **any application**, framework or library, just like `PHPUnit_Framework_TestCase`.
 
-Unit Tests vs Component Tests
------------------------------
+Classic vs mockist style of unit testing
+----------------------------------------
 
-Some developers might criticise that the resulting tests are just component tests and not true unit tests. Simply put, component tests are like unit tests except that you don't mock class dependencies by default but use real objects (ideally via dependency injection). Mocking is creating objects that **simulate the behaviour of real objects**. Martin Fowler refers to this as the **classic and mockist styles of unit testing** instead of making a difference between true unit tests and component tests:
+Some developers might criticise that the resulting tests are not true unit tests because class dependencies are not mocked by default but you're encouraged to use real objects via dependency injection. Mocking is creating objects that **simulate the behaviour of real objects**. Martin Fowler refers to this as the **classic and mockist styles of unit testing**:
 
 "The **classical TDD style** is to use **real objects** if possible and a double if it's awkward to use the real thing. So a classical TDDer would use a real warehouse and a double for the mail service. The kind of double doesn't really matter that much.
 
-A **mockist TDD** practitioner, however, will always use a mock for any object with interesting behavior. In this case for both the warehouse and the mail service.
+A **mockist TDD** practitioner, however, will always use a mock for any object with interesting behavior. In this case for both the warehouse and the mail service." -- [Martin Fowler](http://martinfowler.com/articles/mocksArentStubs.html)
 
-Although the various mock frameworks were designed with mockist testing in mind, many classicists find them useful for creating doubles." -- [Martin Fowler](http://martinfowler.com/articles/mocksArentStubs.html)
+Mocks are required to be able to test sometimes, but since **mocking can be a costly endeavour**, you should try to avoid their widespread usage and prefer using real objects instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.
 
-Mocks are required to be able to test sometimes, but since **mocking can be a costly endeavour**, you should try to avoid their widespread usage and prefer component tests instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.
+In theory, the mockist style can be a bit **more precise** when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, **classic unit tests will also provide you with a stack trace** that points you to the right line of code:
 
-In theory, true unit tests can be a bit more precise when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, component tests will also provide you with a stack trace that points you to the right line of code:
-
-"We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. So we felt **isolation wasn't an issue in practice**." -- [Martin Fowler](http://martinfowler.com/bliki/UnitTest.html)
+"We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. **So we felt isolation wasn't an issue in practice**." -- [Martin Fowler](http://martinfowler.com/bliki/UnitTest.html)
 
 In the worst case, more than one test case fails, if just one class or function is broken – will give you even more information about the issue and allows to find and fix affected code easily.
 
