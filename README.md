@@ -66,7 +66,7 @@ In theory, the mockist style can be a bit **more precise** when it comes to find
 
 "We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. **So we felt isolation wasn't an issue in practice**." -- [Martin Fowler](http://martinfowler.com/bliki/UnitTest.html)
 
-In the worst case, more than one test case fails, if just one class or function is broken – will give you even more information about the issue and allows to find and fix affected code easily.
+In the worst case, more than one test case fails, if just one class or function is broken – this will give you even more information about the issue and allows to find and fix affected code easily.
 
 Even code that depends on databases or Web services, can be easily tested using **self-initializing fixtures** instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use [functional tests of the user interface or API](http://martinfowler.com/bliki/TestPyramid.html) instead.
 
