@@ -1,6 +1,6 @@
 dependencies:
   override:
-    - composer update
+    - 'composer update --prefer-source'
 
 test:
   override:
