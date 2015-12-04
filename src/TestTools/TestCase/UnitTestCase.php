@@ -52,7 +52,7 @@ abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
     private static $containers = array();
 
     /**
-     * @var TestContainerBuilder
+     * @var ContainerBuilder
      */
     private $container;
 
@@ -61,7 +61,7 @@ abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
      */
     private $loader;
 
-    protected function setContainer(TestContainerBuilder $container)
+    protected function setContainer(ContainerBuilder $container)
     {
         $this->container = $container;
     }
@@ -76,12 +76,14 @@ abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
     {
         if (isset(self::$containers[$this->getTestBasePath()])) {
             // Use cached container (creating a new container from yml is too slow)
-            $this->setContainer(clone self::$containers[$this->getTestBasePath()]);
+            $this->setContainer(self::$containers[$this->getTestBasePath()]);
+
+            $this->container->reset();
 
             $this->configureContainer();
         } elseif (!$this->container) {
             // Create new container
-            $this->setContainer(new TestContainerBuilder());
+            $this->setContainer(new ContainerBuilder());
 
             $this->configureContainer();
 
@@ -96,8 +98,8 @@ abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
                 // No local config found
             }
 
-            // Clone container to static cache
-            self::$containers[$this->getTestBasePath()] = clone $this->container;
+            // Cache container
+            self::$containers[$this->getTestBasePath()] = $this->container;
         }
 
         return $this->container;
