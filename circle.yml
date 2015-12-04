@@ -1,0 +1,11 @@
+dependencies:
+  override:
+    - composer update
+
+test:
+  override:
+    - phpunit
+
+machine:
+  php:
+    version: 7.0.0
