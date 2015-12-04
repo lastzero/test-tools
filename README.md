@@ -1,5 +1,5 @@
-Test Tools for PHPUnit
-======================
+TestTools for PHPUnit
+=====================
 
 [![Build Status](https://travis-ci.org/lastzero/test-tools.png?branch=master)](https://travis-ci.org/lastzero/test-tools)
 [![Latest Stable Version](https://poser.pugx.org/lastzero/test-tools/v/stable.svg)](https://packagist.org/packages/lastzero/test-tools)
