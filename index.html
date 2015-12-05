@@ -83,11 +83,11 @@ class Foo extends SomeBaseClass
 
 <p>A <strong>mockist TDD</strong> practitioner, however, will always use a mock for any object with interesting behavior. In this case for both the warehouse and the mail service." -- <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler</a></p>
 
-<p><a href="http://martinfowler.com/bliki/TestDouble.html">Mocks and test doubles</a> are required to be able to test sometimes, but since <strong>creating and maintaining mocks can be a time-consuming endeavour</strong>, it makes sense to avoid their widespread usage and prefer using real objects instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.</p>
+<p><a href="http://martinfowler.com/bliki/TestDouble.html">Mocks and test doubles</a> are required to be able to test sometimes, but creating and maintaining mocks can be a boring, time-consuming endeavour. Therefore, you should think about avoiding their widespread usage and prefer using real objects instead. From my experience, they do no harm – quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.</p>
 
-<p>In theory, the mockist style can be a bit <strong>more precise</strong> when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, <strong>classic unit tests will also provide you with a stack trace</strong> that points you to the right line of code:</p>
+<p>In theory, the mockist style can be a bit <strong>more precise</strong> when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, classic unit tests <strong>will also provide you with a stack trace</strong> that points you to the right line of code:</p>
 
-<p>"We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. <strong>So we felt isolation wasn't an issue in practice</strong>." -- <a href="http://martinfowler.com/bliki/UnitTest.html">Martin Fowler</a></p>
+<p>"We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. So we felt isolation wasn't an issue in practice." -- <a href="http://martinfowler.com/bliki/UnitTest.html">Martin Fowler</a></p>
 
 <p>In the worst case, more than one test case fails, if just one class or function is broken – this will give you even more information about the issue and allows to find and fix affected code easily.</p>
 
