@@ -60,7 +60,7 @@ These tools **simplify writing unit tests using real objects and test doubles** 
 
 A **mockist TDD** practitioner, however, will always use a mock for any object with interesting behavior. In this case for both the warehouse and the mail service." -- [Martin Fowler](http://martinfowler.com/articles/mocksArentStubs.html)
 
-[Mocks and test doubles](http://martinfowler.com/bliki/TestDouble.html) are required to be able to test sometimes, but since **creating and maintaining mocks can be a time-consuming endeavour**, it makes sense to avoid their widespread usage and prefer using real objects instead. They do no harm - quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.
+[Mocks and test doubles](http://martinfowler.com/bliki/TestDouble.html) are required to be able to test sometimes, but creating and maintaining mocks can be a boring, time-consuming endeavour. Therefore, you should think about avoiding their widespread usage and prefer using real objects instead. From my experience, they do no harm – quite the contrary: You can instantly see, how the real objects interact with each other instead of waiting for functional tests. Actually, the need for excessive mocking is an indicator for bad software design.
 
 In theory, the mockist style can be a bit **more precise** when it comes to finding a broken line of code, because all classes are tested in complete isolation. In practice, **classic unit tests will also provide you with a stack trace** that points you to the right line of code:
 
