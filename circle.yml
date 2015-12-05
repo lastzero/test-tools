@@ -1,3 +1,8 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+      
 dependencies:
   override:
     - 'composer update --prefer-source'
