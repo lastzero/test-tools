@@ -5,7 +5,7 @@ general:
       
 dependencies:
   override:
-    - 'composer update --prefer-source'
+    - 'composer update --prefer-source --no-interaction'
 
 test:
   override:
