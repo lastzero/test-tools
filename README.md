@@ -107,15 +107,14 @@ regular DI configuration of your application:
 
         public function testGetBar()
         {
-            $this->client->getRequest('/foo/bar/Pi', array('precision' => 2));
-            $response = $this->client->getResponse();
+            $response = $this->getRequest('/foo/bar/Pi', array('precision' => 2));
             $this->assertEquals(3.14, $response->getContent());
         }
     }
 
 DI container configuration for self-initializing fixtures
 ---------------------------------------------------------
-A config parameter "fixture.path" (for storing file based fixtures) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically.
+A config parameter "fixture.path" (for storing file based fixtures) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically. The parameter "base.path" is also available (points to the parent directory of "Tests").
 
 Example container configuration (`TestTools/Tests/config.yml`):
 ```
