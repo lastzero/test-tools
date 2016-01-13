@@ -169,6 +169,29 @@ trait SelfInitializingFixtureTrait
     }
 
     /**
+     * Can be overwritten by classes that use this trait
+     *
+     * @param array $arguments
+     * @return array
+     */
+    protected function getFixtureFingerprintArguments(array $arguments)
+    {
+        $fingerprintArguments = array();
+
+        foreach ($arguments as $arg) {
+            if (is_object($arg) && method_exists($arg, '__toString')) {
+                $fingerprintArg = (string)$arg;
+            } else {
+                $fingerprintArg = $arg;
+            }
+
+            $fingerprintArguments[] = $fingerprintArg;
+        }
+
+        return $fingerprintArguments;
+    }
+
+    /**
      * Wrapper that calls the parent function with file fixtures (if enabled)
      *
      * @param string $functionName
@@ -181,18 +204,7 @@ trait SelfInitializingFixtureTrait
     {
         if ($this->usesFixtures()) {
             // Determine fixture file name
-            $fingerprintArguments = array();
-
-            foreach ($arguments as $arg) {
-                if (is_object($arg) && method_exists($arg, '__toString')) {
-                    $fingerprintArg = (string)$arg;
-                } else {
-                    $fingerprintArg = $arg;
-                }
-
-                $fingerprintArguments[] = $fingerprintArg;
-            }
-
+            $fingerprintArguments = $this->getFixtureFingerprintArguments($arguments);
             $fixture = new FileFixture($this->_fixturePath . FileFixture::getFilename($this->getFixturePrefix() . '_' . $functionName, $fingerprintArguments));
 
             // Try to find existing fixture file
