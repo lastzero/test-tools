@@ -26,6 +26,7 @@
         "doctrine/dbal": "~2.5",
         "guzzle/guzzle": "~3.9.2",
         "kriswallsmith/buzz": "~0.10",
+        "basho/riak": "~2.0",
         "phpunit/phpunit": "@stable"
     },
     "autoload": {

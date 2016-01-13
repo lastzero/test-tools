@@ -1,4 +1,5 @@
 <?php
+
 namespace TestTools\Buzz;
 
 use TestTools\Fixture\BlackBox;
