@@ -184,7 +184,7 @@ trait SelfInitializingFixtureTrait
             $fingerprintArguments = array();
 
             foreach ($arguments as $arg) {
-                if (is_object($arg)) {
+                if (is_object($arg) && method_exists($arg, '__toString')) {
                     $fingerprintArg = (string)$arg;
                 } else {
                     $fingerprintArg = $arg;
