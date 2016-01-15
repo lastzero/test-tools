@@ -22,7 +22,7 @@ class Connection extends DoctrineDBALConnection
     use SelfInitializingFixtureTrait;
 
     /**
-     * Outputs the caller method name so that accidental queries are not unnoticed
+     * Outputs the caller method name so that accidental queries can be noticed
      *
      * Using echo() is safe, since fixtures should be enabled on the command line while running PHPUnit only!
      *

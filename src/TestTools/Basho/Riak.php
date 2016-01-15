@@ -21,17 +21,17 @@ class Riak extends BashoRiak
             } elseif ($arg instanceof Command) {
                 $fingerprintArg = $arg->getMethod();
 
-                if($arg->getLocation()) {
+                if ($arg->getLocation()) {
                     $fingerprintArg .= $arg->getLocation()->__toString();
                 } else {
                     $fingerprintArg .= $arg->getBucket()->__toString();
                 }
 
-                if($arg->getParameters()) {
+                if ($arg->getParameters()) {
                     $fingerprintArg .= print_r($arg->getParameters(), true);
                 }
 
-                if($arg instanceof Fetch && is_object($arg->getObject())) {
+                if ($arg instanceof Fetch && is_object($arg->getObject())) {
                     $fingerprintArg .= print_r($arg->getEncodedData(), true);
                 }
             } else {
@@ -54,5 +54,21 @@ class Riak extends BashoRiak
     public function execute(Command $command)
     {
         return $this->callWithFixtures('execute', func_get_args());
+    }
+
+    /**
+     * Outputs the caller method name so that accidental connections can be noticed
+     *
+     * Using echo() is safe, since fixtures should be enabled on the command line while running PHPUnit only!
+     *
+     * @return BashoRiak\Node
+     */
+    public function getActiveNode()
+    {
+        if ($this->usesFixtures()) {
+            echo ' [RIAK CONNECT BY "' . $this->getFixtureCaller(8) . '"] ';
+        }
+
+        return parent::getActiveNode();
     }
 }
