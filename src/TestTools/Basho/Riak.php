@@ -22,13 +22,7 @@ class Riak extends BashoRiak
                 $fingerprintArg = $arg->getMethod();
 
                 if($arg->getLocation()) {
-                    $location = $arg->getLocation()->__toString();
-
-                    if($arg->getMethod() != 'GET') {
-                        $location = substr($location, 0, strrpos($location, '_'));
-                    }
-
-                    $fingerprintArg .= $location;
+                    $fingerprintArg .= $arg->getLocation()->__toString();
                 } else {
                     $fingerprintArg .= $arg->getBucket()->__toString();
                 }
