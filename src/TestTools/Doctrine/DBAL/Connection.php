@@ -121,7 +121,7 @@ class Connection extends DoctrineDBALConnection
                 // That's ok!
             }
         } else {
-            $this->beginTransaction();
+            parent::beginTransaction();
         }
     }
 
@@ -134,7 +134,7 @@ class Connection extends DoctrineDBALConnection
                 // That's ok!
             }
         } else {
-            $this->commit();
+            parent::commit();
         }
     }
 
