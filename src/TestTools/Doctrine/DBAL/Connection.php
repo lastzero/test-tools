@@ -147,7 +147,7 @@ class Connection extends DoctrineDBALConnection
                 // That's ok!
             }
         } else {
-            $this->rollBack();
+            parent::rollBack();
         }
     }
 
