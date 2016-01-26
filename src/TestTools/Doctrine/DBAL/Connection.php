@@ -21,6 +21,8 @@ class Connection extends DoctrineDBALConnection
 {
     use SelfInitializingFixtureTrait;
 
+    protected $showFixtureWarnings = true;
+
     /**
      * Outputs the caller method name so that accidental queries can be noticed
      *
@@ -30,7 +32,7 @@ class Connection extends DoctrineDBALConnection
      */
     public function connect()
     {
-        if ($this->usesFixtures()) {
+        if ($this->usesFixtures() && $this->showFixtureWarnings) {
             echo ' [SQL CONNECT BY "' . $this->getFixtureCaller() . '"] ';
         }
 
@@ -50,7 +52,7 @@ class Connection extends DoctrineDBALConnection
             return null;
         }
 
-        if ($this->usesFixtures()) {
+        if ($this->usesFixtures() && $this->showFixtureWarnings) {
             echo 'WARNING: query() does not work with fixtures - please use other SQL methods';
         }
 
@@ -169,5 +171,13 @@ class Connection extends DoctrineDBALConnection
     public function lastInsertId($seqName = null)
     {
         return $this->callWithFixtures('lastInsertId', func_get_args());
+    }
+
+    public function hideFixtureWarnings() {
+        $this->showFixtureWarnings = false;
+    }
+
+    public function showFixtureWarnings() {
+        $this->showFixtureWarnings = true;
     }
 }
