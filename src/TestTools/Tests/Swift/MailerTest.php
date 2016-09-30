@@ -22,6 +22,15 @@ class MailerTest extends UnitTestCase
         $this->mailer = $this->get('swift.mailer');
     }
 
+    /**
+     * @expectedException \Swift_IoException
+     */
+    public function testGetLastMessageException()
+    {
+        $this->mailer->clearLastMessage();
+        $this->mailer->getLastMessage();
+    }
+
     public function testSend()
     {
         $message = Message::newInstance();

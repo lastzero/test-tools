@@ -4,6 +4,7 @@ namespace TestTools\Swift;
 
 use Swift_Mailer;
 use Swift_Mime_Message;
+use Swift_IoException;
 
 /**
  * Test double for Swift Mailer
@@ -53,11 +54,18 @@ class Mailer extends Swift_Mailer
     /**
      * Returns the last message sent
      *
+     * @throws Swift_IoException
      * @return Swift_Mime_Message
      */
     public function getLastMessage()
     {
-        $result = unserialize(file_get_contents($this->getTempFilename()));
+        $filename = $this->getTempFilename();
+
+        if (file_exists($filename)) {
+            $result = unserialize(file_get_contents($filename));
+        } else {
+            throw new Swift_IoException('No last message found in "' . $filename . '" - did you call send()?');
+        }
 
         return $result;
     }
@@ -69,7 +77,7 @@ class Mailer extends Swift_Mailer
     {
         $filename = $this->getTempFilename();
 
-        if(file_exists($filename)) {
+        if (file_exists($filename)) {
             unlink($filename);
         }
     }
