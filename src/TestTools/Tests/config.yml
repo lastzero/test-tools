@@ -43,3 +43,14 @@ services:
         calls:
             - [ setBaseUrl, [ %backend.base_url% ] ]
             - [ setRequestFactory, [ "@guzzle.request.factory" ] ]
+
+    swift.mailer:
+        class: TestTools\Swift\Mailer
+        arguments: [ "@swift.transport" ]
+
+    swift.transport:
+        class: 'Swift_Transport_NullTransport'
+        arguments: [ "@swift.eventdispatcher" ]
+
+    swift.eventdispatcher:
+        class: 'Swift_Events_SimpleEventDispatcher'
