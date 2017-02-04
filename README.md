@@ -8,7 +8,7 @@ TestTools for PHPUnit
 
 **The goal of this project is to increase testing productivity by leveraging the power of dependency injection and self-initializing fixtures for PHPUnit tests.**
 
-* **UnitTestCase** extends `PHPUnit_Framework_TestCase` with a configurable dependency injection container (Symfony Components)
+* **UnitTestCase** extends `PHPUnit\Framework\TestCase` with a configurable dependency injection container (Symfony Components)
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
 * **FileFixture** reads and writes serialized data from/to the file system
 * **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback)
@@ -161,7 +161,7 @@ Composer
 If you are using composer, simply add "lastzero/test-tools" to your composer.json file and run `composer update`:
 
     "require-dev": {
-        "lastzero/test-tools": "~2.0"
+        "lastzero/test-tools": "~3.0"
     }
 
-For PHP 5.4 compatibility, use version "~1.2".
+For PHP 5.4 compatibility, use version "~1.2". For PHP 5.5 and 5.6, use "~2.0".
