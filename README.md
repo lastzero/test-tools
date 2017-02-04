@@ -19,23 +19,25 @@ Dependency Injection
 
 Here’s an example of a test case built with `TestTools\TestCase\UnitTestCase` – note the **setUp()** method, which get’s the ready-to-use object from the dependency injection container:
 
-    use TestTools\TestCase\UnitTestCase;
+```php
+use TestTools\TestCase\UnitTestCase;
 
-    class FooTest extends UnitTestCase
+class FooTest extends UnitTestCase
+{
+    protected $foo;
+
+    public function setUp()
     {
-        protected $foo;
-
-        public function setUp()
-        {
-            $this->foo = $this->get('foo');
-        }
-
-        public function testBar()
-        {
-            $result = $this->foo->bar('Pi', 2);
-            $this->assertEquals(3.14, $result);
-        }
+        $this->foo = $this->get('foo');
     }
+
+    public function testBar()
+    {
+        $result = $this->foo->bar('Pi', 2);
+        $this->assertEquals(3.14, $result);
+    }
+}
+```
 
 To define services, simply create a `config.yml` (optionally `config.local.yml` for local modifications) in your base test directory, for example
 
@@ -77,47 +79,52 @@ The concept of [self-initializing fakes](http://martinfowler.com/bliki/SelfIniti
 
 `SelfInitializingFixtureTrait` enables existing classes to work with file based fixtures (record and playback):
 
-    use TestTools\Fixture\SelfInitializingFixtureTrait;
+```php
+use TestTools\Fixture\SelfInitializingFixtureTrait;
 
-    class Foo extends SomeBaseClass
+class Foo extends SomeBaseClass
+{
+    use SelfInitializingFixtureTrait;
+
+    public function bar($name, $type, array $baz = array())
     {
-        use SelfInitializingFixtureTrait;
-
-        public function bar($name, $type, array $baz = array())
-        {
-            return $this->callWithFixtures('bar', func_get_args());
-        }
+        return $this->callWithFixtures('bar', func_get_args());
     }
+}
+```
 
 The Doctrine connection class (`TestTools\Doctrine\DBAL\Connection`) serves as a ready-to-use example. It works as a wrapper for the standard connection class (white box inheritance). Black box inheritance (`TestTools\Fixture\BlackBox`) is used by the Buzz client (`TestTools\Buzz\Client`) to encapsulate any ClientInterface.
 
 `TestTools\TestCase\WebTestCase.php` can be used for functional testing of Symfony controllers based on the 
 regular DI configuration of your application:
 
-    use TestTools\TestCase\WebTestCase;
-    use Symfony\Component\DependencyInjection\ContainerInterface;
+```php
+use TestTools\TestCase\WebTestCase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-    class FooControllerTest extends WebTestCase
+class FooControllerTest extends WebTestCase
+{
+    protected function configureFixtures(ContainerInterface $container)
     {
-        protected function configureFixtures(ContainerInterface $container)
-        {
-            // Service instance must provide a useFixtures() method for this to work
-            $container->get('db')->useFixtures($this->getFixturePath());
-        }
-
-        public function testGetBar()
-        {
-            $response = $this->getRequest('/foo/bar/Pi', array('precision' => 2));
-            $this->assertEquals(3.14, $response->getContent());
-        }
+        // Service instance must provide a useFixtures() method for this to work
+        $container->get('db')->useFixtures($this->getFixturePath());
     }
+
+    public function testGetBar()
+    {
+        $response = $this->getRequest('/foo/bar/Pi', array('precision' => 2));
+        $this->assertEquals(3.14, $response->getContent());
+    }
+}
+```
 
 DI container configuration for self-initializing fixtures
 ---------------------------------------------------------
 A config parameter "fixture.path" (for storing file based fixtures) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically. The parameter "base.path" is also available (points to the parent directory of "Tests").
 
 Example container configuration (`TestTools/Tests/config.yml`):
-```
+
+```yaml
 parameters:
     dbal.params:
         driver:         mysqli
@@ -160,8 +167,10 @@ Composer
 
 If you are using composer, simply add "lastzero/test-tools" to your composer.json file and run `composer update`:
 
-    "require-dev": {
-        "lastzero/test-tools": "~3.0"
-    }
+```yaml
+"require-dev": {
+    "lastzero/test-tools": "~3.0"
+}
+```
 
 For PHP 5.4 compatibility, use version "~1.2". For PHP 5.5 and 5.6, use "~2.0".
