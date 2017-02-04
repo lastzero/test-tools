@@ -2,6 +2,7 @@
 
 namespace TestTools\TestCase;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -42,7 +43,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  * @package TestTools
  * @license MIT
  */
-abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
+abstract class UnitTestCase extends TestCase
 {
     use FixturePathTrait;
 

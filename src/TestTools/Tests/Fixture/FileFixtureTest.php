@@ -41,16 +41,18 @@ class FileFixtureTest extends UnitTestCase {
         $this->assertEquals(__DIR__ . DIRECTORY_SEPARATOR, FileFixture::normalizePath(__DIR__));
         $this->assertEquals(__DIR__ . DIRECTORY_SEPARATOR, FileFixture::normalizePath(__DIR__ . DIRECTORY_SEPARATOR));
     }
-    
+
+    /**
+     * @expectedException \TestTools\Fixture\Exception\FixtureInvalidDirectoryException
+     */
     public function testNormalizePathException () {
-        $this->setExpectedException('TestTools\Fixture\Exception\FixtureInvalidDirectoryException');
-        
         FileFixture::normalizePath('/a/b/c');
     }
-    
-    public function testConstructor () {
-        $this->setExpectedException('TestTools\Fixture\Exception\FixtureEmptyFilenameException');
 
+    /**
+     * @expectedException \TestTools\Fixture\Exception\FixtureEmptyFilenameException
+     */
+    public function testConstructor () {
         new FileFixture('');
     }
 

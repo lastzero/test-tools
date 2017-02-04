@@ -151,12 +151,14 @@ class ConnectionTest extends UnitTestCase
     {
         $this->db->beginTransaction();
         $this->db->commit();
+        $this->assertTrue(true);
     }
 
     public function testRollBack()
     {
         $this->db->beginTransaction();
         $this->db->rollBack();
+        $this->assertTrue(true);
     }
 
     public function testGetDatabasePlatform()

@@ -3,7 +3,7 @@
 namespace TestTools\Tests\Profiler;
 
 use TestTools\Profiler\Profiler;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Michael Mayer <michael@lastzero.net>

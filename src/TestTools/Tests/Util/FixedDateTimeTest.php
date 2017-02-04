@@ -2,8 +2,8 @@
 
 namespace TestTools\Tests\Util;
 
+use PHPUnit\Framework\TestCase;
 use TestTools\Util\FixedDateTime;
-use PHPUnit_Framework_TestCase as TestCase;
 
 /**
  * @author Michael Mayer <michael@lastzero.net>
