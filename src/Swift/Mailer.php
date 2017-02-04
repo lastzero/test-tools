@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TestTools\Swift;
 
 use Swift_Mailer;

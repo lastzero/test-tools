@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TestTools\Tests\Doctrine\DBAL;
 
 use TestTools\Fixture\Exception\OfflineException;

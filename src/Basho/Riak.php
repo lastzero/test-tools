@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TestTools\Basho;
 
 use Basho\Riak as BashoRiak;
