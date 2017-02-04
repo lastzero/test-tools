@@ -18,8 +18,7 @@ class FileFixtureTest extends UnitTestCase {
 
     public function testFixturePath () {
         $result = $this->getFixturePath();
-        $this->assertEquals(36, strpos(strrev($result), strrev('TestTools')));
-        $this->assertEquals(21, strpos(strrev($result), strrev('_fixture')));
+        $this->assertStringEndsWith('src/Tests/_fixtures/Fixture/FileFixture', $result);
     }
 
     public function testFilterAlphanumeric () {

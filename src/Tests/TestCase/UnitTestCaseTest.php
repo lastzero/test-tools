@@ -17,7 +17,7 @@ class UnitTestCaseTest extends UnitTestCase
     public function testGetFixturePath()
     {
         $fixturePath = $this->getContainer()->getParameter('fixture.path') . '/';
-        $this->assertStringEndsWith('src/TestTools/Tests/_fixtures/TestCase/UnitTestCase/', $fixturePath);
+        $this->assertStringEndsWith('src/Tests/_fixtures/TestCase/UnitTestCase/', $fixturePath);
 
         $buzz = $this->get('buzz.fixture');
         $this->assertInstanceOf('TestTools\Buzz\Client', $buzz);

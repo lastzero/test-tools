@@ -13,7 +13,7 @@
         >
     <testsuites>
         <testsuite>
-            <directory>src/*/Tests</directory>
+            <directory>src/Tests</directory>
         </testsuite>
     </testsuites>
 
@@ -21,7 +21,7 @@
         <whitelist>
             <directory>src</directory>
             <exclude>
-                <directory>src/*/Tests</directory>
+                <directory>src/Tests</directory>
             </exclude>
         </whitelist>
     </filter>
