@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.0.0",
         "symfony/dependency-injection": ">=2.8",
         "symfony/yaml": ">=2.8",
         "symfony/config": ">=2.8",
