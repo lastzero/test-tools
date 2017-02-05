@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TestTools\Guzzle\Http;
 
 use Guzzle\Http\Message\Request as GuzzleRequest;

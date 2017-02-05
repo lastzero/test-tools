@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TestTools\Profiler;
 
 /**
@@ -164,9 +166,9 @@ class Profiler
             if ($step['silent']) continue;
 
             $result .= self::padLabel($step['label'], $labelWidth) . ' '
-                . str_pad(round($step['total'] * 1000), 10, ' ', STR_PAD_LEFT) . ' '
-                . str_pad(number_format($step['diff'] * 1000, 1), 10, ' ', STR_PAD_LEFT) . ' '
-                . str_pad(number_format(($step['diff'] / $totalTime) * 100, 1), 10, ' ', STR_PAD_LEFT) . "\n";
+                . str_pad((string) round($step['total'] * 1000), 10, ' ', STR_PAD_LEFT) . ' '
+                . str_pad((string) number_format($step['diff'] * 1000, 1), 10, ' ', STR_PAD_LEFT) . ' '
+                . str_pad((string) number_format(($step['diff'] / $totalTime) * 100, 1), 10, ' ', STR_PAD_LEFT) . "\n";
         }
 
         if (count(self::$aggregated) > 0) {
@@ -180,17 +182,17 @@ class Profiler
                 if ($values['count'] == 0) continue;
 
                 $result .= self::padLabel($label, $labelWidth) . ' '
-                    . str_pad($values['count'], 10, ' ', STR_PAD_LEFT) . ' '
-                    . str_pad(number_format($values['total'] * 1000, 1), 10, ' ', STR_PAD_LEFT) . ' '
-                    . str_pad(number_format(($values['total'] / $totalTime) * 100, 1), 10, ' ', STR_PAD_LEFT) . "\n";
+                    . str_pad((string) $values['count'], 10, ' ', STR_PAD_LEFT) . ' '
+                    . str_pad((string) number_format($values['total'] * 1000, 1), 10, ' ', STR_PAD_LEFT) . ' '
+                    . str_pad((string) number_format(($values['total'] / $totalTime) * 100, 1), 10, ' ', STR_PAD_LEFT) . "\n";
 
                 ksort($values['sub']);
 
                 foreach ($values['sub'] as $sublabel => $subvalues) {
                     $result .= self::padSublabel($sublabel, $labelWidth) . ' '
-                        . str_pad($subvalues['count'], 10, ' ', STR_PAD_LEFT) . ' '
-                        . str_pad(number_format($subvalues['total'] * 1000, 1), 10, ' ', STR_PAD_LEFT) . ' '
-                        . str_pad(number_format(($subvalues['total'] / $totalTime) * 100, 1), 10, ' ', STR_PAD_LEFT) . "\n";
+                        . str_pad((string) $subvalues['count'], 10, ' ', STR_PAD_LEFT) . ' '
+                        . str_pad((string) number_format($subvalues['total'] * 1000, 1), 10, ' ', STR_PAD_LEFT) . ' '
+                        . str_pad((string) number_format(($subvalues['total'] / $totalTime) * 100, 1), 10, ' ', STR_PAD_LEFT) . "\n";
                 }
             }
         }
