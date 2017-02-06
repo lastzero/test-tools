@@ -32,18 +32,6 @@ services:
         calls:
             - [useFixtures, ["%fixture.path%"]]
 
-    guzzle.request.factory:
-        class: TestTools\Guzzle\Http\RequestFactory
-        calls:
-            - [ setFixturePrefix, ['http'] ]
-            - [ useFixtures, ["%fixture.path%"] ]
-
-    guzzle.client:
-        class: Guzzle\Http\Client
-        calls:
-            - [ setBaseUrl, [ %backend.base_url% ] ]
-            - [ setRequestFactory, [ "@guzzle.request.factory" ] ]
-
     swift.mailer:
         class: TestTools\Swift\Mailer
         arguments: [ "@swift.transport" ]
