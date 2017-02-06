@@ -23,10 +23,6 @@ class UnitTestCaseTest extends UnitTestCase
         $this->assertInstanceOf('TestTools\Buzz\Client', $buzz);
         $this->assertEquals($fixturePath, $buzz->getFixturePath());
 
-        $guzzle = $this->get('guzzle.request.factory');
-        $this->assertInstanceOf('TestTools\Guzzle\Http\RequestFactory', $guzzle);
-        $this->assertEquals($fixturePath, $guzzle->getFixturePath());
-
         $dbal = $this->get('dbal.connection');
         $this->assertInstanceOf('TestTools\Doctrine\DBAL\Connection', $dbal);
         $this->assertEquals($fixturePath, $dbal->getFixturePath());

@@ -11,6 +11,7 @@
          syntaxCheck="false"
          bootstrap="vendor/autoload.php"
         >
+
     <testsuites>
         <testsuite>
             <directory>src/Tests</directory>
