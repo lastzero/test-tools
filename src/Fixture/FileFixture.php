@@ -14,7 +14,7 @@ use TestTools\Fixture\Exception\FixtureInvalidDirectoryException;
  * injection of test adapters with fixture support to avoid the need for
  * modification of any production code.
  *
- * A good explaination on the topic was written by Martin Fowler:
+ * A good explanation on the topic was written by Martin Fowler:
  *
  *   http://martinfowler.com/bliki/SelfInitializingFake.html
  *
