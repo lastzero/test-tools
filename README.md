@@ -9,9 +9,9 @@ TestTools for PHPUnit
 **This library increases testing productivity by adding a configurable service container and self-initializing fakes to PHPUnit.**
 
 * **UnitTestCase** adds the Symfony [service container](http://symfony.com/doc/current/service_container.html) to `PHPUnit\Framework\TestCase` (configuration via `config.yml` file in the Tests directory)
-* **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
+* **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony Web and CLI applications
 * **FileFixture** reads and writes serialized data from/to the file system
-* **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback) to provice self-initializing fakes as test doubles
+* **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback) to provide self-initializing fakes as test doubles
 * To cover some of the most common use cases, **Doctrine DBAL** (SQL) and **Buzz** (HTTP) are supported out of the box
 
 Service Container
