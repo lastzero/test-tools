@@ -47,7 +47,7 @@ The YAML file must contain the sections "parameters" and "services". If you're n
 
 http://symfony.com/doc/current/components/dependency_injection/introduction.html
 
-The Symfony Components DI container was chosen, because of it's easy to understand container configuration in YAML.
+The Symfony service container was chosen, because of it's easy to understand container configuration in YAML.
 
 Since global state must be avoided while performing tests, the service instances are not cached between tests. The service definitions in the container are reused however. This significantly improves test performance compared to a full container reinitialization before each test (about 5 to 10 times faster).
 
@@ -96,7 +96,7 @@ class Foo extends SomeBaseClass
 The Doctrine connection class (`TestTools\Doctrine\DBAL\Connection`) serves as a ready-to-use example. It works as a wrapper for the standard connection class (white box inheritance). Black box inheritance (`TestTools\Fixture\BlackBox`) is used by the Buzz client (`TestTools\Buzz\Client`) to encapsulate any ClientInterface.
 
 `TestTools\TestCase\WebTestCase.php` can be used for functional testing of Symfony controllers based on the 
-regular DI configuration of your application:
+regular service configuration of your application:
 
 ```php
 use TestTools\TestCase\WebTestCase;
