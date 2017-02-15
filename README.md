@@ -6,7 +6,7 @@ TestTools for PHPUnit
 [![Total Downloads](https://poser.pugx.org/lastzero/test-tools/downloads.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![License](https://poser.pugx.org/lastzero/test-tools/license.svg)](https://packagist.org/packages/lastzero/test-tools)
 
-**The goal of this project is to increase testing productivity by leveraging the power of dependency injection and self-initializing fixtures for PHPUnit tests.**
+**The goal of this project is to increase testing productivity by adding a mature service container and self-initializing fakes to PHPUnit.**
 
 * **UnitTestCase** extends `PHPUnit\Framework\TestCase` with a configurable dependency injection container (Symfony Components)
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
@@ -118,8 +118,8 @@ class FooControllerTest extends WebTestCase
 }
 ```
 
-DI container configuration for self-initializing fixtures
----------------------------------------------------------
+Service container configuration for self-initializing fakes
+-----------------------------------------------------------
 A config parameter "fixture.path" (for storing file based fixtures) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically. The parameter "base.path" is also available (points to the parent directory of "Tests").
 
 Example container configuration (`TestTools/Tests/config.yml`):
@@ -159,7 +159,7 @@ services:
             - [useFixtures, ["%fixture.path%"]]
 ```
 
-When using a dependency injection container in conjunction with fixtures, you don't need to care about different environments such as development and production:
+When using a service container in conjunction with fixtures, you don't need to care about different environments such as development and production:
 Configuration details (e.g. login credentials) must be valid for development environments only, since service / database requests should be replaced by fixtures from the file system after the  corresponding tests were running for the first time. If a test fails on Jenkins or Travis CI because of invalid URLs or credentials in config.yml, you must make sure that all code that  accesses external resources is using fixtures (or mock objects) and that all fixtures are checked in properly.
 
 Composer

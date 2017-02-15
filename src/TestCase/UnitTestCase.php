@@ -8,7 +8,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * This base class for unit tests provides an integrated DI container
+ * This base class for unit tests provides an integrated service container
  * for more productive testing. The service instances are not cached
  * between tests, but the container itself is which significantly improves test
  * performance (about 5 to 10 times faster).
