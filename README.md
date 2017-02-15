@@ -6,7 +6,7 @@ TestTools for PHPUnit
 [![Total Downloads](https://poser.pugx.org/lastzero/test-tools/downloads.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![License](https://poser.pugx.org/lastzero/test-tools/license.svg)](https://packagist.org/packages/lastzero/test-tools)
 
-**The goal of this project is to increase testing productivity by adding a mature service container and self-initializing fakes to PHPUnit.**
+**This library increases testing productivity by adding a mature service container and self-initializing fakes to PHPUnit.**
 
 * **UnitTestCase** adds the Symfony [service container](http://symfony.com/doc/current/service_container.html) to `PHPUnit\Framework\TestCase` (configuration via `config.yml` file in the Tests directory)
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
@@ -14,8 +14,8 @@ TestTools for PHPUnit
 * **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback)
 * To cover some of the most common use cases, **Doctrine DBAL** (SQL) and **Buzz** (HTTP) are supported out of the box
 
-Dependency Injection
---------------------
+Service Container
+-----------------
 
 Here’s an example of a test case built with `TestTools\TestCase\UnitTestCase` – note the **setUp()** method, which get’s the ready-to-use object from the dependency injection container:
 
@@ -53,7 +53,7 @@ Since global state must be avoided while performing tests, the service instances
 
 TestTools can be used to test any application, framework or library, just like `PHPUnit\Framework\TestCase`.
 
-Classic vs mockist style of unit testing
+Classic vs Mockist Style of Unit Testing
 ----------------------------------------
 
 These tools **simplify writing unit tests using real objects and test doubles** via dependency injection, so some developers might be concerned that the resulting tests are not *true* unit tests as **class dependencies are not mocked by default**. Mocking is creating objects that simulate the behaviour of real objects. These apparently conflicting approaches are referred to as the **classic and mockist styles of unit testing**:
@@ -72,8 +72,8 @@ In the worst case, more than one test case fails, if just one class or function 
 
 Even code that depends on databases or Web services, can be easily tested using **self-initializing fixtures** instead of hand-written mocks. The only thing they can not properly simulate is state, but robust unit tests shouldn't depend on state anyways. If you want to test state, use [functional tests of the user interface or API](http://martinfowler.com/bliki/TestPyramid.html) instead.
 
-Self-initializing fixtures
---------------------------
+Self-initializing Fakes
+-----------------------
 
 The concept of [self-initializing fakes](http://martinfowler.com/bliki/SelfInitializingFake.html) as test doubles can be applied to all types of external data stores (databases) and services like SOAP or REST APIs.
 
@@ -120,7 +120,7 @@ class FooControllerTest extends WebTestCase
 
 Service container configuration for self-initializing fakes
 -----------------------------------------------------------
-A config parameter "fixture.path" (for storing file based fixtures) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically. The parameter "base.path" is also available (points to the parent directory of "Tests").
+A config parameter "fixture.path" (for storing file based fixtures as fakes) is automatically set based on the test class filename and path to avoid conflicts/dependencies between different tests and enforce a consistent naming scheme. The directory is created automatically. The parameter "base.path" is also available (points to the parent directory of "Tests").
 
 Example container configuration (`TestTools/Tests/config.yml`):
 
