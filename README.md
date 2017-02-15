@@ -6,7 +6,7 @@ TestTools for PHPUnit
 [![Total Downloads](https://poser.pugx.org/lastzero/test-tools/downloads.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![License](https://poser.pugx.org/lastzero/test-tools/license.svg)](https://packagist.org/packages/lastzero/test-tools)
 
-**This library increases testing productivity by adding a mature service container and self-initializing fakes to PHPUnit.**
+**This library increases testing productivity by adding a mature service container as well as record & replay fixtures as self-initializing fakes to PHPUnit.**
 
 * **UnitTestCase** adds the Symfony [service container](http://symfony.com/doc/current/service_container.html) to `PHPUnit\Framework\TestCase` (configuration via `config.yml` file in the Tests directory)
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
@@ -169,8 +169,8 @@ If you are using composer, simply add "lastzero/test-tools" to your composer.jso
 
 ```yaml
 "require-dev": {
-    "lastzero/test-tools": "~3.0"
+    "lastzero/test-tools": "^3.0"
 }
 ```
 
-For PHP 5.4 compatibility, use version "~1.2". For PHP 5.5 and 5.6, use "~2.0".
+For PHP 5.4 compatibility, use version "^1.2". For PHP 5.5 and 5.6, use "^2.0".
