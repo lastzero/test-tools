@@ -8,7 +8,7 @@ TestTools for PHPUnit
 
 **The goal of this project is to increase testing productivity by adding a mature service container and self-initializing fakes to PHPUnit.**
 
-* **UnitTestCase** extends `PHPUnit\Framework\TestCase` with the Symfony [service container](http://symfony.com/doc/current/service_container.html) (configuration via `config.yml` file in the Tests directory)
+* **UnitTestCase** adds the Symfony [service container](http://symfony.com/doc/current/service_container.html) to `PHPUnit\Framework\TestCase` (configuration via `config.yml` file in the Tests directory)
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony2 Web and CLI applications
 * **FileFixture** reads and writes serialized data from/to the file system
 * **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback)
