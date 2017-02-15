@@ -51,7 +51,7 @@ The Symfony service container was chosen, because of it's easy to understand con
 
 Since global state must be avoided while performing tests, the service instances are not cached between tests. The service definitions in the container are reused however. This significantly improves test performance compared to a full container reinitialization before each test (about 5 to 10 times faster).
 
-TestTools can be used to test **any application**, framework or library, just like `PHPUnit_Framework_TestCase`.
+TestTools can be used to test **any application**, framework or library, just like `PHPUnit\Framework\TestCase`.
 
 Classic vs mockist style of unit testing
 ----------------------------------------
