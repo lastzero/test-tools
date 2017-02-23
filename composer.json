@@ -1,7 +1,7 @@
 {
     "name": "lastzero/test-tools",
     "type": "library",
-    "description": "Easy dependency injection and self-initializing fixtures for PHPUnit",
+    "description": "Increases testing productivity by adding a service container and self-initializing fakes to PHPUnit",
     "keywords": [
         "phpunit",
         "testing",
