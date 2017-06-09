@@ -165,12 +165,8 @@ Configuration details (e.g. login credentials) must be valid for development env
 Composer
 --------
 
-If you are using composer, simply add "lastzero/test-tools" to your composer.json file and run `composer update`:
+If you are using composer, simply run:
 
-```yaml
-"require-dev": {
-    "lastzero/test-tools": "^3.0"
-}
+```bash
+composer require --dev lastzero/test-tools 
 ```
-
-For PHP 5.4 compatibility, use version "^1.2". For PHP 5.5 and 5.6, use "^2.0".
