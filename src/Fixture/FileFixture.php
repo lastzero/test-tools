@@ -141,16 +141,10 @@ class FileFixture
      */
     public static function getFilename($name, $arguments = false)
     {
-        if (!$arguments) {
-            $filename = self::filterAlphanumeric($name);
-        } else {
-            $fingerprint = self::filterAlphanumeric(strtr(print_r($arguments, true), array('=' => '_', 'Array' => 'array_')));
+        $filename = strtolower(self::filterAlphanumeric($name));
 
-            if (strlen($fingerprint) > 40) {
-                $fingerprint = md5(print_r($arguments, true));
-            }
-
-            $filename = self::filterAlphanumeric($name) . '.' . $fingerprint;
+        if ($arguments) {
+            $filename .= '.' . md5(print_r($arguments, true));
         }
 
         return $filename . '.fix';

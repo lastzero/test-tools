@@ -166,4 +166,28 @@ class ConnectionTest extends UnitTestCase
         $result = $this->db->getDatabasePlatform();
         $this->assertInstanceOf('\Doctrine\DBAL\Platforms\MySqlPlatform', $result);
     }
+
+    public function testQuote()
+    {
+        $original = 'A';
+        $resultUppercase = $this->db->quote(strtoupper($original));
+
+        $this->assertEquals("'A'", $resultUppercase);
+
+        $resultLowercase = $this->db->quote(strtolower($original));
+
+        $this->assertEquals("'a'", $resultLowercase);
+    }
+
+    public function testQuoteIdentifier()
+    {
+        $original = 'A';
+        $resultUppercase = $this->db->quoteIdentifier(strtoupper($original));
+
+        $this->assertEquals("`A`", $resultUppercase);
+
+        $resultLowercase = $this->db->quoteIdentifier(strtolower($original));
+
+        $this->assertEquals("`a`", $resultLowercase);
+    }
 }

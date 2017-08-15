@@ -36,7 +36,8 @@
         "doctrine/dbal": "~2.5",
         "kriswallsmith/buzz": "~0.10",
         "basho/riak": "~2.0",
-        "swiftmailer/swiftmailer": "5.*"
+        "swiftmailer/swiftmailer": "5.*",
+        "phing/phing": "^2.15"
     },
     "autoload": {
         "psr-4": { "TestTools\\": "src/" }

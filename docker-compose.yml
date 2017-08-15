@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    php:
+        build: ./docker/php
+        depends_on:
+            - db
+        volumes:
+            - ./:/var/www/html
+
+    db:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: testtools
+            MYSQL_PASSWORD: testtools
+            MYSQL_DATABASE: testtools

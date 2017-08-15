@@ -29,10 +29,10 @@ class FileFixtureTest extends UnitTestCase {
     
     public function testGetFilename () {
         $this->assertEquals('foo_barbaz.fix', FileFixture::getFilename('foo_bar.baz&*()'));
-        $this->assertEquals('foo_barbaz.array_a_b.fix', FileFixture::getFilename('foo_bar.baz&*()', array('a' => 'b')));
-        $this->assertEquals('foo.bar.fix', FileFixture::getFilename('foo!', 'bar'));
+        $this->assertEquals('foo_barbaz.41aa394f0a48f5af8474f5c5b8e1077d.fix', FileFixture::getFilename('foo_bar.baz&*()', array('a' => 'b')));
+        $this->assertEquals('foo.37b51d194a7513e45b56f6524f2d51f2.fix', FileFixture::getFilename('foo!', 'bar'));
         $this->assertEquals('foo.fix', FileFixture::getFilename('foo'));
-        $this->assertEquals('GoOo.b7f3e6756b2ca19c4b06f5e95061e342.fix', FileFixture::getFilename('GoOo', 'e5v8snjpv0pjsev4fjp0ws4tfghsge;]-c3seecfjhisfhijjijkjmcs8jvn'));
+        $this->assertEquals('gooo.b7f3e6756b2ca19c4b06f5e95061e342.fix', FileFixture::getFilename('GoOo', 'e5v8snjpv0pjsev4fjp0ws4tfghsge;]-c3seecfjhisfhijjijkjmcs8jvn'));
     }
     
     public function testNormalizePath () {

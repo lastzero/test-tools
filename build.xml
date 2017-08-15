@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<project name="App" default="build" basedir="." description="">
+    <target name="build">
+        <phingcall target="build-database"/>
+    </target>
+
+    <target name="build-database">
+        <exec command="mysql -h db -u testtools --password=testtools testtools &lt; ./src/Tests/_fixtures/schema.sql" checkreturn="true" passthru="true" />
+    </target>
+</project>
