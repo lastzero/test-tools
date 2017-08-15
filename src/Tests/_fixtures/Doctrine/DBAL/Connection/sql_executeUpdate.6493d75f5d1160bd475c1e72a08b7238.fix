@@ -1,1 +1,0 @@
-a:2:{s:6:"result";i:1;s:4:"args";a:3:{i:0;s:30:"DELETE FROM users WHERE id = ?";i:1;a:1:{i:0;i:3;}i:2;a:0:{}}}
