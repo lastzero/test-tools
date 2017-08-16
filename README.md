@@ -6,7 +6,7 @@ TestTools for PHPUnit
 [![Total Downloads](https://poser.pugx.org/lastzero/test-tools/downloads.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![License](https://poser.pugx.org/lastzero/test-tools/license.svg)](https://packagist.org/packages/lastzero/test-tools)
 
-**This library increases testing productivity by adding a configurable service container and self-initializing fakes to PHPUnit.**
+**This library improves testing productivity by adding a configurable service container and self-initializing fakes to PHPUnit.**
 
 * **UnitTestCase** adds the Symfony [service container](http://symfony.com/doc/current/service_container.html) to `PHPUnit\Framework\TestCase` (configuration via `config.yml` file in the Tests directory)
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony Web and CLI applications
