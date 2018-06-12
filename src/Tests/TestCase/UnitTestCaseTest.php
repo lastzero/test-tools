@@ -19,10 +19,6 @@ class UnitTestCaseTest extends UnitTestCase
         $fixturePath = $this->getContainer()->getParameter('fixture.path') . '/';
         $this->assertStringEndsWith('src/Tests/_fixtures/TestCase/UnitTestCase/', $fixturePath);
 
-        $buzz = $this->get('buzz.fixture');
-        $this->assertInstanceOf('TestTools\Buzz\Client', $buzz);
-        $this->assertEquals($fixturePath, $buzz->getFixturePath());
-
         $dbal = $this->get('dbal.connection');
         $this->assertInstanceOf('TestTools\Doctrine\DBAL\Connection', $dbal);
         $this->assertEquals($fixturePath, $dbal->getFixturePath());
@@ -42,8 +38,8 @@ class UnitTestCaseTest extends UnitTestCase
         $this->assertEquals(__DIR__ . '/foo/', $container->getParameter('fixture.path'));
         $this->assertEquals(__DIR__, $container->getParameter('base.path'));
 
-        $buzz = $container->get('buzz.fixture');
-        $this->assertInstanceOf('TestTools\Buzz\Client', $buzz);
+        $buzz = $container->get('dbal.connection');
+        $this->assertInstanceOf('TestTools\Doctrine\DBAL\Connection', $buzz);
         $this->assertEquals($container->getParameter('fixture.path'), $buzz->getFixturePath());
 
         $container->reset();
@@ -54,8 +50,8 @@ class UnitTestCaseTest extends UnitTestCase
         $this->assertEquals(__DIR__ . '/bar/', $container->getParameter('fixture.path'));
         $this->assertEquals(__DIR__, $container->getParameter('base.path'));
 
-        $buzz = $container->get('buzz.fixture');
-        $this->assertInstanceOf('TestTools\Buzz\Client', $buzz);
+        $buzz = $container->get('dbal.connection');
+        $this->assertInstanceOf('TestTools\Doctrine\DBAL\Connection', $buzz);
         $this->assertEquals($container->getParameter('fixture.path'), $buzz->getFixturePath());
     }
 }

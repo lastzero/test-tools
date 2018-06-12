@@ -16,18 +16,8 @@ services:
     dbal.connection:
         class: TestTools\Doctrine\DBAL\Connection
         arguments:
-            - %dbal.params%
+            - "%dbal.params%"
             - "@dbal.driver"
         calls:
             - [setFixturePrefix, ['sql']]
-            - [useFixtures, ["%fixture.path%"]]
-
-    buzz.client:
-        class: Buzz\Client\FileGetContents
-
-    buzz.fixture:
-        class: TestTools\Buzz\Client
-        arguments:
-            - "@buzz.client"
-        calls:
             - [useFixtures, ["%fixture.path%"]]
