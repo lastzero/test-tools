@@ -18,8 +18,8 @@ Please submit new features and bugfixes as pull request. It will be reviewed and
 
 ## Feature Requests
 
-You are welcome to add specific feature requests directly to our main [GitHub issue tracker](https://github.com/lastzero/test-tools/issues)
-or the corresponding sub-project if no similar [idea](https://github.com/lastzero/test-tools/labels/idea)
+You are welcome to add specific feature requests directly to our [GitHub issue tracker](https://github.com/lastzero/test-tools/issues)
+if no similar [idea](https://github.com/lastzero/test-tools/labels/idea)
 or [todo](https://github.com/lastzero/test-tools/labels/todo) already exists.
 Please don't use the issue tracker to ask general questions.
 
@@ -29,7 +29,7 @@ Please use the GitHub issue tracker for [lastzero/test-tools](https://github.com
 to report clearly identified bugs and impediments to us.
 If you're not sure, start by asking [via email](mailto:michael@liquidbytes.net).
 When reporting an issue, please provide the version in use and information about your environment 
-like PHP version, operating system, and installed memory.
+like PHP version and operating system.
 
 ## Donations
 
