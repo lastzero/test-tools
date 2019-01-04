@@ -4,6 +4,8 @@ Changelog
 Release 4
 ---------
 
+* 4.2.1 Tested with PHP 7.2 & 7.3; Documentation clean-up
+
 * 4.2.0 Added support for Symfony 4 and removed support for Buzz (API changed)
 
 * 4.1.0 Added FixedDateTimeTrait
