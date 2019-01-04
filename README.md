@@ -13,7 +13,7 @@ TestTools for PHPUnit
 * **WebTestCase** and **CommandTestCase** extend UnitTestCase for functional testing of Symfony Web and CLI applications
 * **FileFixture** reads and writes serialized data from/to the file system
 * **SelfInitializingFixtureTrait** and **BlackBox** add fixture support to almost any database or service client (record and playback) to provide self-initializing fakes as test doubles
-* To cover some of the most common use cases, **Doctrine DBAL** (SQL) and **Buzz** (HTTP) are supported out of the box
+* **Doctrine DBAL** is supported out of the box
 
 Service Container
 -----------------
@@ -94,7 +94,7 @@ class Foo extends SomeBaseClass
 }
 ```
 
-The Doctrine connection class (`TestTools\Doctrine\DBAL\Connection`) serves as a ready-to-use example. It works as a wrapper for the standard connection class (white box inheritance). Black box inheritance (`TestTools\Fixture\BlackBox`) is used by the Buzz client (`TestTools\Buzz\Client`) to encapsulate any ClientInterface.
+The Doctrine connection class (`TestTools\Doctrine\DBAL\Connection`) serves as a ready-to-use example. It works as a wrapper for the standard connection class (white box inheritance). Black box inheritance (`TestTools\Fixture\BlackBox`) can be used to encapsulate any client interface.
 
 `TestTools\TestCase\WebTestCase.php` can be used for functional testing of Symfony controllers based on the 
 regular service configuration of your application:
@@ -147,16 +147,6 @@ services:
             - "@dbal.driver"
         calls:
             - [setFixturePrefix, ['sql']]
-            - [useFixtures, ["%fixture.path%"]]
-
-    buzz.client:
-        class: Buzz\Client\FileGetContents
-
-    buzz.fixture:
-        class: TestTools\Buzz\Client
-        arguments:
-            - "@buzz.client"
-        calls:
             - [useFixtures, ["%fixture.path%"]]
 ```
 
