@@ -1,10 +1,11 @@
 TestTools for PHPUnit
 =====================
 
-[![Build Status](https://travis-ci.org/lastzero/test-tools.png?branch=master)](https://travis-ci.org/lastzero/test-tools)
+[![License](https://poser.pugx.org/lastzero/test-tools/license.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![Latest Stable Version](https://poser.pugx.org/lastzero/test-tools/v/stable.svg)](https://packagist.org/packages/lastzero/test-tools)
 [![Total Downloads](https://poser.pugx.org/lastzero/test-tools/downloads.svg)](https://packagist.org/packages/lastzero/test-tools)
-[![License](https://poser.pugx.org/lastzero/test-tools/license.svg)](https://packagist.org/packages/lastzero/test-tools)
+[![Test Coverage](https://codecov.io/gh/lastzero/test-tools/branch/master/graph/badge.svg)](https://codecov.io/gh/lastzero/test-tools)
+[![Build Status](https://travis-ci.org/lastzero/test-tools.png?branch=master)](https://travis-ci.org/lastzero/test-tools)
 
 **This library improves testing productivity by adding a configurable service container and self-initializing fakes to PHPUnit.**
 

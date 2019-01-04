@@ -34,7 +34,6 @@
         "symfony/console": "^2.8|^3.0|^4.0",
         "symfony/framework-bundle": "^2.8|^3.0|^4.0",
         "doctrine/dbal": "~2.5",
-        "kriswallsmith/buzz": "~0.10",
         "basho/riak": "~2.0",
         "swiftmailer/swiftmailer": "5.*",
         "phing/phing": "^2.15"
