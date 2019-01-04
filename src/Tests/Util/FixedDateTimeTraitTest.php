@@ -21,7 +21,7 @@ class FixedDateTimeTraitTest extends TestCase
 
         $result = $instance->getCurrentDateTime();
 
-        $this->assertLessThan(10, $result->diff($now)->s);
+        $this->assertLessThan(60, $result->diff($now)->s);
     }
 
     public function testGetFixedDateTime()
