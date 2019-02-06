@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ProfilerTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         Profiler::clear();
     }
@@ -34,10 +34,10 @@ class ProfilerTest extends TestCase
 
         $result = Profiler::getResultAsTable();
 
-        $this->assertContains('Foo', $result);
-        $this->assertContains('Start', $result);
-        $this->assertContains('Done', $result);
-        $this->assertNotContains('Bar', $result);
+        $this->assertStringContainsString('Foo', $result);
+        $this->assertStringContainsString('Start', $result);
+        $this->assertStringContainsString('Done', $result);
+        $this->assertStringNotContainsString('Bar', $result);
     }
 
     public function testAggregate () {
@@ -59,11 +59,11 @@ class ProfilerTest extends TestCase
 
         $result = Profiler::getResultAsTable();
 
-        $this->assertContains('Foo', $result); // Aggregation label
-        $this->assertContains('Bar', $result);
-        $this->assertContains('Baz', $result);
-        $this->assertContains('42', $result); // Aggregated count
-        $this->assertContains('23', $result);
-        $this->assertContains('19', $result);
+        $this->assertStringContainsString('Foo', $result); // Aggregation label
+        $this->assertStringContainsString('Bar', $result);
+        $this->assertStringContainsString('Baz', $result);
+        $this->assertStringContainsString('42', $result); // Aggregated count
+        $this->assertStringContainsString('23', $result);
+        $this->assertStringContainsString('19', $result);
     }
 }

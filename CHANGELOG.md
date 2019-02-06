@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Release 5
+---------
+
+* 5.0.0 Upgraded to PHPUnit 8.0
+
 Release 4
 ---------
 

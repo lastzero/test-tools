@@ -17,7 +17,7 @@ class ConnectionTest extends UnitTestCase
      */
     protected $db;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->db = $this->get('dbal.connection');
     }
@@ -97,11 +97,10 @@ class ConnectionTest extends UnitTestCase
         $this->assertEquals($expected, $result);
     }
 
-    /**
-     * @expectedException \Doctrine\DBAL\DBALException
-     */
     public function testInsertException()
     {
+        $this->expectException('\Doctrine\DBAL\DBALException');
+
         $row = array('username' => 'Baz', 'foo' => 'bar', 'email' => 'baz@example.com');
 
         $this->db->insert('users', $row);

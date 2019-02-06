@@ -39,6 +39,7 @@ Thumbs.db
 vendor/
 bin/
 composer.lock
+.phpunit.result.cache
 
 # IDE generated files #
 #######################

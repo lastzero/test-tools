@@ -18,7 +18,7 @@ class WebTestCase extends SymfonyWebTestCase
     /** @var \Symfony\Bundle\FrameworkBundle\Client */
     protected $client = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->client = $this->getClient();
     }

@@ -17,16 +17,15 @@ class MailerTest extends UnitTestCase
      */
     protected $mailer;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->mailer = $this->get('swift.mailer');
     }
 
-    /**
-     * @expectedException \Swift_IoException
-     */
     public function testGetLastMessageException()
     {
+        $this->expectException('\Swift_IoException');
+
         $this->mailer->clearLastMessage();
         $this->mailer->getLastMessage();
     }
