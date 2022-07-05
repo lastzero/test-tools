@@ -1,6 +1,6 @@
 <?php
 
-namespace TestTools\Tests\Buzz;
+namespace TestTools\Tests\TestCase;
 
 use TestTools\TestCase\UnitTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
